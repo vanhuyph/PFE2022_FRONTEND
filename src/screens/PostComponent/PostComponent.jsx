@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, SafeAreaView, Pressable } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Pressable, Button, TouchableOpacity } from 'react-native';
 import { Heading, Box, VStack, HStack } from 'native-base'
 import AntIcon from "react-native-vector-icons/AntDesign";
 
 
 
 const PostComponent = () => {
-    [liked, setLiked] = useState(false)
+    const [liked, setLiked] = useState(false)
 
     const onPressLike = () => {
-
         if (!liked) {
             setLiked(true)
         } else {
@@ -31,11 +30,9 @@ const PostComponent = () => {
                         <AntIcon name="retweet" color="black" size={20} />
                     </Box>
                     <Box>
-                        <Pressable onPress={() => {
-                            onPressLike()
-                        }}>
-                            {liked ? <AntIcon name="like1" color="purple" size={20} /> : <AntIcon name="like2" color="black" size={20} />}
-                        </Pressable>
+                        <TouchableOpacity onPress={() => onPressLike()}>
+                            {liked ? <AntIcon name="like1" color="purple" size={20} />: <AntIcon name="like2" color="black" size={20} />}
+                        </TouchableOpacity>
                     </Box>
                 </HStack>
             </VStack>
