@@ -6,6 +6,7 @@ import LoginScreen from './src/screens/LoginScreen/LoginScreen';
 import CreateAccountScreen from './src/screens/CreateAccountScreen/CreateAccountScreen'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TestScreen from './src/screens/TestScreen/TestScreen';
+import MainScreen from './src/screens/MainScreen/MainScreen';
 import TestScreen2 from './src/screens/TestScreen/TestScreen2';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -20,7 +21,7 @@ export default function App() {
         <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
       </Stack.Navigator> */}
        <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={TestScreen} />
+        <Drawer.Screen name="Home" component={MainScreen} />
         <Drawer.Screen name="TestScreen2" component={TestScreen2} />
       </Drawer.Navigator>
     </AppContainer>
