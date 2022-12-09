@@ -11,14 +11,14 @@ import {
 } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const CreateAccountScreen = () => {
+const CreateAccountScreen = ({navigation}) => {
   const [formData, setData] = useState({});
 
   return (
     <SafeAreaView>
       <Center p={16} height="100%">
         <VStack space={8} height="100%" width={315}>
-          <Box height="29%" pt={3} >
+          <Box height="28%" pt={3} >
             <Heading size="2xl">Create your account</Heading>
           </Box>
           <VStack space={10} height="40%">
@@ -70,7 +70,7 @@ const CreateAccountScreen = () => {
           </VStack>
           <Button size="lg">Create account</Button>
           <Box pt={8}>
-            <Button size="lg" width="100%" variant="link">Back to login</Button>
+            <Button size="lg" width="100%" variant="link" onPress={() => navigation.navigate('Login')}>Back to login</Button>
           </Box>
         </VStack>
       </Center>

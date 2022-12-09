@@ -30,7 +30,7 @@ const LoginScreen = ({navigation}) => {
                         </FormControl>
                         <Box alignItems="center" pt={8}>
                             <Text>Don't have an account ?</Text>
-                            <Button size="lg" width="100%" variant="link" onPress={() => navigation.navigate('Test')}>Create account</Button>
+                            <Button size="lg" width="100%" variant="link" onPress={() => navigation.navigate('CreateAccount')}>Create account</Button>
                         </Box>
                     </VStack>
                 </Center>
