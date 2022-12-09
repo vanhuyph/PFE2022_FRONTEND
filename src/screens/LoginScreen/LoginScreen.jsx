@@ -7,7 +7,6 @@ import { StackActions } from '@react-navigation/native';
 const LoginScreen = ({navigation}) => {
     return (
         <SafeAreaView>
-            
                 <Center p={4} height="100%">
                     <VStack width={315} space={8} height="100%">
                         <Box height="30%" pt={8} >
