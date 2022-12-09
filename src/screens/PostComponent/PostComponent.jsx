@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, SafeAreaView, Pressable, Button, TouchableOpaci
 import { Heading, Box, VStack, HStack } from 'native-base'
 import AntIcon from "react-native-vector-icons/AntDesign";
 
-
-
 const PostComponent = () => {
     const [liked, setLiked] = useState(false)
 
@@ -15,7 +13,6 @@ const PostComponent = () => {
             setLiked(false)
         }
     }
-
 
     return (
         <Box p={5} borderBottomWidth="1" borderBottomColor="gray.300">
