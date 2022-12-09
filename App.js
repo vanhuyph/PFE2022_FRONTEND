@@ -16,14 +16,14 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <AppContainer>
-      {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {/*<Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
-      </Stack.Navigator> */}
-       <Drawer.Navigator initialRouteName="Home">
+  </Stack.Navigator> */}
+      {<Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={MainScreen} />
         <Drawer.Screen name="TestScreen2" component={TestScreen2} />
-      </Drawer.Navigator>
+      </Drawer.Navigator>}
     </AppContainer>
   );
 }

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, SafeAreaView, Pressable, Button, TouchableOpacity } from 'react-native';
-import { Heading, Box, VStack, HStack } from 'native-base'
+import { Heading, Box, VStack, HStack, useColorModeValue } from 'native-base'
 import AntIcon from "react-native-vector-icons/AntDesign";
+const color ="#812bd6" 
 
 const PostComponent = () => {
     const [liked, setLiked] = useState(false)
     const [rePosted, setRePosted] = useState(false)
-    const color ="#812bd6" 
 
     const onPressLike = () => {
         if (!liked) {

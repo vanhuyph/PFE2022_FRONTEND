@@ -1,11 +1,12 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { NativeBaseProvider } from 'native-base'
+import { NativeBaseProvider, extendTheme } from 'native-base'
+import theme from '../../theme'
 
 const AppContainer = (props) => {
     return (
         <NavigationContainer>
-            <NativeBaseProvider>{props.children}</NativeBaseProvider>
+            <NativeBaseProvider theme={theme}>{props.children}</NativeBaseProvider>
         </NavigationContainer>
     )
 }
