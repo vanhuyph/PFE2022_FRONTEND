@@ -1,15 +1,15 @@
-import React from 'react'
-import { Text, SafeAreaView } from 'react-native'
-import { Center, Box, VStack, Heading, Input, Button, FormControl } from 'native-base'
+import * as React from 'react';
+import { Button, View } from 'react-native';
 
-
-const TestScreen = ({navigation}) => {
+const TestScreen = ({ navigation }) => {
     return (
-        <SafeAreaView>
-            <Text>Test Screen</Text>
-            <Button size="lg" width="100" onPress={() => navigation.navigate('Login')}>Back to login</Button>
-        </SafeAreaView>
-    )
-}
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button
+          onPress={() => navigation.navigate('TestScreen2')}
+          title="Go to TestScreen2"
+        />
+      </View>
+    );
+  }
 
 export default TestScreen
