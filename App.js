@@ -9,6 +9,7 @@ import TestScreen from './src/screens/TestScreen/TestScreen';
 import MainScreen from './src/screens/MainScreen/MainScreen';
 import TestScreen2 from './src/screens/TestScreen/TestScreen2';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import ProfileTabView from './src/screens/ProfileScreen/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -20,10 +21,11 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
       </Stack.Navigator> */}
-       <Drawer.Navigator initialRouteName="Home">
+       {/* <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={MainScreen} />
         <Drawer.Screen name="TestScreen2" component={TestScreen2} />
-      </Drawer.Navigator>
+      </Drawer.Navigator> */}
+      <ProfileTabView />
     </AppContainer>
   );
 }
