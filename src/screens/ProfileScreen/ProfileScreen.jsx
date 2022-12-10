@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useWindowDimensions, StatusBar } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import PostComponent from '../PostComponent/PostComponent';
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 const FirstRoute = () => <PostComponent />;
 
@@ -22,14 +23,17 @@ export default function ProfileTabView() {
   ]);
 
   return (
-    <TabView
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={{ width: layout.width }}
-      style={{
-        marginTop: StatusBar.currentHeight,
-      }}
-    />
+    <>
+      <ProfileCard />
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        style={{
+          marginTop: StatusBar.currentHeight,
+        }}
+      />
+    </>
   );
 }
