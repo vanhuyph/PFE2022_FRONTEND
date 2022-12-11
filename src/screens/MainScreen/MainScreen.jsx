@@ -8,13 +8,16 @@ import {
   ScrollView,
 } from 'react-native';
 import PostComponent from '../PostComponent/PostComponent';
+import NavBar from '../../components/NavBar/NavBar';
+import { Box, useColorModeValue } from 'native-base';
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const MainScreen = () => {
+const MainScreen = ({navigation}) => {
   const [refresh, setRefreshing] = useState(false);
+  
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -22,25 +25,29 @@ const MainScreen = () => {
   }, []);
 
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={onRefresh}
-        ></RefreshControl>
-      }
-    >
-      <PostComponent />
-      <PostComponent />
-      <PostComponent />
-      <PostComponent />
-      <PostComponent />
-      <PostComponent />
-      <PostComponent />
-      <PostComponent />
-      <PostComponent />
-      <PostComponent />
-    </ScrollView>
+    <>
+      <NavBar navigation={navigation}/>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={onRefresh}
+            progressBackgroundColor={useColorModeValue('white', '#242526')}
+          ></RefreshControl>
+        }
+      >
+        <PostComponent />
+        <PostComponent />
+        <PostComponent />
+        <PostComponent />
+        <PostComponent />
+        <PostComponent />
+        <PostComponent />
+        <PostComponent />
+        <PostComponent />
+        <PostComponent />
+      </ScrollView>
+    </>
   );
 };
 
