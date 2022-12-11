@@ -6,9 +6,9 @@ const ThemeToggle = () => {
 
   return (
     <HStack space={4}>
-        <Text>Light</Text>
+        <Text bold>Light</Text>
         <Switch isChecked={colorMode !== 'light'} onToggle={toggleColorMode} />
-        <Text>Dark</Text>
+        <Text bold>Dark</Text>
     </HStack>
   )
 }
