@@ -3,6 +3,8 @@ import { useWindowDimensions, StatusBar } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import PostComponent from '../PostComponent/PostComponent';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
+import NavBar from '../../components/NavBar/NavBar';
+import { useColorModeValue } from 'native-base';
 
 const FirstRoute = () => <PostComponent />;
 
@@ -13,8 +15,9 @@ const renderScene = SceneMap({
   second: SecondRoute,
 });
 
-export default function ProfileTabView() {
+export default function ProfileTabView({ navigation }) {
   const layout = useWindowDimensions();
+  const bg = useColorModeValue('white', '#242526')
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -24,6 +27,7 @@ export default function ProfileTabView() {
 
   return (
     <>
+      <NavBar navigation={navigation} title="Profile" />
       <ProfileCard />
       <TabView
         navigationState={{ index, routes }}
@@ -32,6 +36,7 @@ export default function ProfileTabView() {
         initialLayout={{ width: layout.width }}
         style={{
           marginTop: StatusBar.currentHeight,
+          backgroundColor: bg
         }}
       />
     </>

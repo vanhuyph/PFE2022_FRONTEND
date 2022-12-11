@@ -1,6 +1,4 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import AppContainer from './src/components/AppContainer/AppContainer';
 import LoginScreen from './src/screens/LoginScreen/LoginScreen';
 import CreateAccountScreen from './src/screens/CreateAccountScreen/CreateAccountScreen'
@@ -11,7 +9,7 @@ import TestScreen2 from './src/screens/TestScreen/TestScreen2';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import ProfileTabView from './src/screens/ProfileScreen/ProfileScreen';
 import SideBar from './src/screens/SideBar/SideBar';
-import { useColorMode, useColorModeValue } from 'native-base';
+import { useColorModeValue } from 'native-base';
 
 
 const Stack = createNativeStackNavigator();
@@ -27,9 +25,9 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
   </Stack.Navigator> */}
-      {<Drawer.Navigator initialRouteName="Home" drawerContent={props => <SideBar {...props} />} screenOptions={{ headerShown:false,headerTintColor: '#000000', headerStyle:{ backgroundColor: '242526'}}}>
+      {<Drawer.Navigator initialRouteName="Home" drawerContent={props => <SideBar {...props} />} screenOptions={{ headerShown: false, headerTintColor: '#000000', headerStyle: { backgroundColor: '242526' } }}>
         <Drawer.Screen name="Home" component={MainScreen} />
-        <Drawer.Screen name="TestScreen2" component={TestScreen2} />
+        <Drawer.Screen name="Profil" component={ProfileTabView} />
       </Drawer.Navigator>}
     </AppContainer>
   );

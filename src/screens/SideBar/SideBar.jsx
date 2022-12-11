@@ -1,17 +1,17 @@
 import React, { useCallback } from 'react'
 import { Box, Center } from 'native-base'
-import { themeTools, useTheme, useColorMode, useColorModeValue, Text, VStack } from 'native-base';
+import { VStack } from 'native-base';
 import ThemeToggle from '../../components/ThemeToggle/ThemeToggle';
 import MenuButton from '../../components/MenuButton/MenuButton';
 
 const SideBar = (props) => {
     const { navigation } = props
 
-    const handlePressBackButton = useCallback(() => {
-        navigation.closeDrawer()
-    }, [navigation])
     const handlePressMain = useCallback(() => {
         navigation.navigate('Home')
+    }, [navigation])
+    const handlePressProfil = useCallback(() => {
+        navigation.navigate('Profil')
     }, [navigation])
 
     return (
@@ -21,11 +21,10 @@ const SideBar = (props) => {
                     pb={10} width="100%">
                     <VStack width="100%" space={8} pt={10}>
                         <MenuButton text="Home" icon="home" onPress={handlePressMain} />
-                        <MenuButton text="Profil" icon="user" />
+                        <MenuButton text="Profile" icon="user" onPress={handlePressProfil} />
                         <MenuButton text="Search" icon="search1" />
 
                     </VStack>
-
                     <VStack space={10} width="100%">
                         <Center>
                             <ThemeToggle />
@@ -33,10 +32,7 @@ const SideBar = (props) => {
                         <MenuButton text="Logout" icon="logout" />
 
                     </VStack>
-
                 </VStack>
-
-
             </Center>
         </Box>
     )

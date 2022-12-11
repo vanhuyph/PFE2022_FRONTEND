@@ -1,23 +1,16 @@
 import { useState, useCallback } from 'react';
-import {
-  RefreshControl,
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native';
+import { RefreshControl, ScrollView, } from 'react-native';
 import PostComponent from '../PostComponent/PostComponent';
 import NavBar from '../../components/NavBar/NavBar';
-import { Box, useColorModeValue } from 'native-base';
+import { useColorModeValue } from 'native-base';
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const MainScreen = ({navigation}) => {
+const MainScreen = ({ navigation }) => {
   const [refresh, setRefreshing] = useState(false);
-  
+
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -26,7 +19,7 @@ const MainScreen = ({navigation}) => {
 
   return (
     <>
-      <NavBar navigation={navigation}/>
+      <NavBar navigation={navigation} title="Home" />
       <ScrollView
         refreshControl={
           <RefreshControl
