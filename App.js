@@ -9,9 +9,9 @@ import TestScreen from './src/screens/TestScreen/TestScreen';
 import MainScreen from './src/screens/MainScreen/MainScreen';
 import TestScreen2 from './src/screens/TestScreen/TestScreen2';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import ProfileTabView from './src/screens/ProfileScreen/ProfileScreen';
 import SideBar from './src/screens/SideBar/SideBar';
 import { useColorMode, useColorModeValue } from 'native-base';
-
 
 
 const Stack = createNativeStackNavigator();
