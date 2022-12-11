@@ -1,13 +1,15 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import { Center, Box, VStack, Heading, Input, Button, FormControl } from 'native-base'
+import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { Center, Box, VStack, Heading, Input, Button, FormControl, Text } from 'native-base'
 import { StackActions } from '@react-navigation/native';
+
+
 
 
 const LoginScreen = ({navigation}) => {
     return (
-        <SafeAreaView>
-                <Center p={4} height="100%">
+
+                <Center p={4} height="100%" _light={{bg: 'primary.50'}} _dark={{bg:'primary.1000'}} safeArea>
                     <VStack width={315} space={8} height="100%">
                         <Box height="30%" pt={8} >
                             <Heading size="2xl" mt={10}>Login</Heading>
@@ -30,10 +32,11 @@ const LoginScreen = ({navigation}) => {
                         <Box alignItems="center" pt={8}>
                             <Text>Don't have an account ?</Text>
                             <Button size="lg" width="100%" variant="link" onPress={() => navigation.navigate('CreateAccount')}>Create account</Button>
+                            
                         </Box>
                     </VStack>
                 </Center>
-        </SafeAreaView>
+
     )
    // <Button size="lg" width="100%" variant="link" onPress={() => navigation.dispatch(StackActions.replace('Test'))}>Create account</Button>
 }
