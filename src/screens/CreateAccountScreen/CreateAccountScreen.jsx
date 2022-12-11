@@ -15,8 +15,8 @@ const CreateAccountScreen = ({navigation}) => {
   const [formData, setData] = useState({});
 
   return (
-    <SafeAreaView>
-      <Center p={16} height="100%">
+
+      <Center p={16} height="100%" _light={{bg: 'primary.50'}} _dark={{bg:'primary.1000'}} safeArea>
         <VStack space={8} height="100%" width={315}>
           <Box height="28%" pt={3} >
             <Heading size="2xl">Create your account</Heading>
@@ -74,7 +74,7 @@ const CreateAccountScreen = ({navigation}) => {
           </Box>
         </VStack>
       </Center>
-    </SafeAreaView>
+
   );
 };
 
