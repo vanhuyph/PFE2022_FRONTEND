@@ -19,10 +19,6 @@ const CreateAccountScreen = ({ navigation }) => {
       setErrors({ ...errors, username: 'Username is required' });
       return false;
     }
-    if (formData.username.length < 3) {
-      setErrors({ ...errors, username: 'Username is too short' });
-      return false;
-    }
     if (!formData.email) {
       setErrors({ ...errors, email: 'Email is required' });
       return false;
