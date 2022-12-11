@@ -16,6 +16,7 @@ import { useColorMode, useColorModeValue } from 'native-base';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
+//Create new navbar to change the color on dark mode
 
 export default function App() {
   return (
