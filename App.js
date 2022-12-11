@@ -9,9 +9,13 @@ import TestScreen from './src/screens/TestScreen/TestScreen';
 import MainScreen from './src/screens/MainScreen/MainScreen';
 import TestScreen2 from './src/screens/TestScreen/TestScreen2';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import SideBar from './src/screens/SideBar/SideBar';
+import { useColorMode, useColorModeValue } from 'native-base';
+
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+
 
 export default function App() {
   return (
@@ -20,19 +24,10 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
   </Stack.Navigator> */}
-      {<Drawer.Navigator initialRouteName="Home">
+      {<Drawer.Navigator initialRouteName="Home" drawerContent={props => <SideBar {...props} />} screenOptions={{ headerTintColor: '#000000', headerStyle:{ backgroundColor: 'white'}}}>
         <Drawer.Screen name="Home" component={MainScreen} />
         <Drawer.Screen name="TestScreen2" component={TestScreen2} />
       </Drawer.Navigator>}
     </AppContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

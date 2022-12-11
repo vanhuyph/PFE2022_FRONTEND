@@ -7,7 +7,7 @@ const config = {
 
 const colors = {
     primary: {
-        50:'#f0e2ff',
+        50:'white',
         100:'#c37cfd',
         200:'#ad5bfe',
         300:'#9732ff',
@@ -17,6 +17,7 @@ const colors = {
         700:'#7627cc',
         800:'#6823b4',
         900:'#5f20a4',
+        1000:'#242526',
     },
 
 }
