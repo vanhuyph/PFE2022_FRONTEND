@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000/users/api";
+const baseUrl = "http://10.0.2.2:8000/users/";
 
 const getAllUser = () => {
     const request = axios.get(baseUrl);
@@ -26,10 +26,21 @@ const deleteUser = (id) => {
     return request.then((response) => response.data);
 };
 
+const registerUser = (newObject) => {
+    let headers = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    const request = axios.post(baseUrl + 'signup/', newObject, headers);
+    return request.then((response) => response.data);
+}
+
 export default {
     getAllUser,
     getUserBydID,
     addUser,
     updateUser,
-    deleteUser
-  };
+    deleteUser,
+    registerUser
+};

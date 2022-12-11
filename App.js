@@ -25,10 +25,11 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
   </Stack.Navigator> */}
-      {<Drawer.Navigator initialRouteName="Home" drawerContent={props => <SideBar {...props} />} screenOptions={{ headerTintColor: '#000000', headerStyle:{ backgroundColor: 'white'}}}>
+      {/* {<Drawer.Navigator initialRouteName="Home" drawerContent={props => <SideBar {...props} />} screenOptions={{ headerTintColor: '#000000', headerStyle:{ backgroundColor: 'white'}}}>
         <Drawer.Screen name="Home" component={MainScreen} />
         <Drawer.Screen name="TestScreen2" component={TestScreen2} />
-      </Drawer.Navigator>}
+      </Drawer.Navigator>} */}
+      <CreateAccountScreen />
     </AppContainer>
   );
 }
