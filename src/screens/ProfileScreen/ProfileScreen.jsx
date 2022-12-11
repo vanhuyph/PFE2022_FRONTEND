@@ -37,7 +37,6 @@ export default function ProfileTabView({ navigation }) {
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
         style={{
-          marginTop: StatusBar.currentHeight,
           backgroundColor: bg
         }}
         renderTabBar={(props) => (
