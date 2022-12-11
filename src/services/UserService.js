@@ -1,5 +1,6 @@
 import axios from "axios";
-const baseUrl = "http://10.0.2.2:8000/users/";
+import {BASE_URL} from '@env'
+const baseUrl = `${BASE_URL}/users/`;
 
 const getAllUser = () => {
     const request = axios.get(baseUrl);
