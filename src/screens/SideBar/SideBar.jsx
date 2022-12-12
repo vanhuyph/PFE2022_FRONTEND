@@ -13,6 +13,9 @@ const SideBar = (props) => {
     const handlePressProfil = useCallback(() => {
         navigation.navigate('Profil')
     }, [navigation])
+    const handlePressSearch = useCallback(() => {
+        navigation.navigate('Search')
+    }, [navigation])
 
     return (
         <Box flex={1} safeArea _light={{ bg: 'primary.50' }} _dark={{ bg: 'primary.1000' }}>
@@ -22,7 +25,7 @@ const SideBar = (props) => {
                     <VStack width="100%" space={8} pt={10}>
                         <MenuButton text="Home" icon="home" onPress={handlePressMain} />
                         <MenuButton text="Profile" icon="user" onPress={handlePressProfil} />
-                        <MenuButton text="Search" icon="search1" />
+                        <MenuButton text="Search" icon="search1" onPress={handlePressSearch} />
 
                     </VStack>
                     <VStack space={10} width="100%">
