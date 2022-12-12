@@ -13,17 +13,16 @@ export const AuthProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState(null);
 
     const login = (email, password) => {
-        console.log(email);
-        console.log(password);
         setIsLoading(true);
         axios.post(baseUrl + 'login/', {
             email, password
         }).then(res => {
             let userInfo = res.data;
             setUserInfo(userInfo);
-            setUserToken(res.data.tokens);
+            setUserToken(userInfo.tokens);
+            console.log('User token: ' + userInfo.tokens);
             AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
-            AsyncStorage.setItem('userToken', res.data.tokens);
+            AsyncStorage.setItem('userToken', userInfo.tokens);
         }).catch(e => {
             console.log(e);
         })
@@ -43,6 +42,7 @@ export const AuthProvider = ({ children }) => {
             setIsLoading(true);
             let userInfo = await AsyncStorage.getItem('userInfo');
             let userToken = await AsyncStorage.getItem('userToken');
+            console.log(userToken);
             userInfo = JSON.parse(userInfo);
             if (userInfo) {
                 setUserToken(userToken);

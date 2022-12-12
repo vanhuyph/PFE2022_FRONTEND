@@ -9,14 +9,13 @@ import {
   FormControl,
   Text,
 } from 'native-base';
-import { StackActions } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const LoginScreen = ({ navigation }) => {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-    console.log(password);
+  
   return (
     <Center
       p={4}

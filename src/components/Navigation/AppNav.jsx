@@ -8,6 +8,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import MainScreen from '../../screens/MainScreen/MainScreen';
 import ProfileTabView from '../../screens/ProfileScreen/ProfileScreen';
 import SideBar from '../../screens/SideBar/SideBar';
+import SearchScreen from '../../screens/SearchScreen/SearchScreen'
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -41,6 +42,7 @@ const AppNav = () => {
         >
           <Drawer.Screen name="Home" component={MainScreen} />
           <Drawer.Screen name="Profil" component={ProfileTabView} />
+          <Drawer.Screen name="Search" component={SearchScreen} />
         </Drawer.Navigator>
       )}
     </>
