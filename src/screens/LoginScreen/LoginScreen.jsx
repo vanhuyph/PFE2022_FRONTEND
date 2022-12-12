@@ -56,7 +56,6 @@ const LoginScreen = ({ navigation }) => {
                 size="lg"
                 onPress={() => {
                   login(email, password);
-                  s
                 }}
               >
                 Login
