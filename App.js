@@ -10,6 +10,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import ProfileTabView from './src/screens/ProfileScreen/ProfileScreen';
 import SideBar from './src/screens/SideBar/SideBar';
 import { useColorModeValue } from 'native-base';
+import SearchScreen from './src/screens/SearchScreen/SearchScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ export default function App() {
       {<Drawer.Navigator initialRouteName="Home" drawerContent={props => <SideBar {...props} />} screenOptions={{ headerShown: false, headerTintColor: '#000000', headerStyle: { backgroundColor: '242526' } }}>
         <Drawer.Screen name="Home" component={MainScreen} />
         <Drawer.Screen name="Profil" component={ProfileTabView} />
+        <Drawer.Screen name="Search" component={SearchScreen} />
       </Drawer.Navigator>}
     </AppContainer>
   );
