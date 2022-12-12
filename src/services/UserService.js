@@ -1,5 +1,5 @@
 import axios from "axios";
-import {BASE_URL} from '@env'
+import { BASE_URL } from '@env'
 const baseUrl = `${BASE_URL}/users/`;
 
 const getAllUser = () => {
@@ -37,12 +37,24 @@ const loginUser = (newObject) => {
     return request.then((response) => response.data);
 }
 
+const searchUser = (username, userToken) => {
+    const request = axios.get(baseUrl + 'search/' + username, {
+        headers: {
+            "Access-Control-Allow-Origin" : "*",
+            'Authorization': 'Token ' + userToken,
+            'Content-Type': 'application/json',
+        }
+    });
+    return request.then((response) => response.data);
+}
+
 export default {
     getAllUser,
     getUserBydID,
     addUser,
     updateUser,
     deleteUser,
-    registerUser, 
-    loginUser
+    registerUser,
+    loginUser,
+    searchUser
 };
