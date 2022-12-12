@@ -1,9 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
-import { BASE_URL } from '@env'
-
-const baseUrl = `${BASE_URL}/users/`;
+import UserService from "../services/UserService";
 
 export const AuthContext = createContext();
 
@@ -14,17 +11,20 @@ export const AuthProvider = ({ children }) => {
 
     const login = (email, password) => {
         setIsLoading(true);
-        axios.post(baseUrl + 'login/', {
-            email, password
-        }).then(res => {
-            let userInfo = res.data;
+        let dataToSend = { email, password }
+        console.log(dataToSend);
+        UserService.loginUser(dataToSend).then((response) => {
+            if (response.message.startsWith("Invalid")) {
+                throw new Error('Invalid credentials')
+            }
+            let userInfo = response;
             setUserInfo(userInfo);
             setUserToken(userInfo.tokens);
             console.log('User token: ' + userInfo.tokens);
             AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
             AsyncStorage.setItem('userToken', userInfo.tokens);
-        }).catch(e => {
-            console.log(e);
+        }).catch((error) => {
+            console.log(error);
         })
         setIsLoading(false);
     }
@@ -58,7 +58,9 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn();
     }, []);
 
-    return (<AuthContext.Provider value={{ login, logout, isLoading, userToken }}>
-        {children}
-    </AuthContext.Provider>)
+    return (
+        <AuthContext.Provider value={{ login, logout, isLoading, userToken }}>
+            {children}
+        </AuthContext.Provider>
+    );
 }

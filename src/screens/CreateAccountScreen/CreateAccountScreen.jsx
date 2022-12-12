@@ -102,7 +102,6 @@ const CreateAccountScreen = ({ navigation }) => {
             </FormControl.Label>
             <Input
               type="password"
-              secureTextEntry={true}
               onChangeText={(value) =>
                 setData({ ...formData, password: value })
               }
