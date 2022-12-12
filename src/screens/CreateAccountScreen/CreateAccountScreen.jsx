@@ -27,7 +27,7 @@ const CreateAccountScreen = ({ navigation }) => {
       setErrors({ ...errors, password: 'Password is required' });
       return false;
     }
-   
+
     return true;
   };
 
@@ -102,6 +102,7 @@ const CreateAccountScreen = ({ navigation }) => {
             </FormControl.Label>
             <Input
               type="password"
+              secureTextEntry={true}
               onChangeText={(value) =>
                 setData({ ...formData, password: value })
               }
