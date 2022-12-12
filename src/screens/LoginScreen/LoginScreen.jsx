@@ -15,7 +15,7 @@ const LoginScreen = ({ navigation }) => {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  
+ 
   return (
     <Center
       p={4}
@@ -49,7 +49,6 @@ const LoginScreen = ({ navigation }) => {
                 variant="underlined"
                 value={password}
                 onChangeText={(text) => setPassword(text)}
-                secureTextEntry={true}
               />
             </Box>
             <Box>
@@ -57,6 +56,7 @@ const LoginScreen = ({ navigation }) => {
                 size="lg"
                 onPress={() => {
                   login(email, password);
+                  s
                 }}
               >
                 Login
@@ -65,7 +65,7 @@ const LoginScreen = ({ navigation }) => {
           </VStack>
         </FormControl>
         <Box alignItems="center" pt={8}>
-          <Text>Don't have an account ?</Text>
+          <Text>Don't have an account?</Text>
           <Button
             size="lg"
             width="100%"

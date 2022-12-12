@@ -28,12 +28,12 @@ const deleteUser = (id) => {
 };
 
 const registerUser = (newObject) => {
-    let headers = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-    const request = axios.post(baseUrl + 'signup/', newObject, headers);
+    const request = axios.post(baseUrl + 'signup/', newObject);
+    return request.then((response) => response.data);
+}
+
+const loginUser = (newObject) => {
+    const request = axios.post(baseUrl + 'login/', newObject);
     return request.then((response) => response.data);
 }
 
@@ -43,5 +43,6 @@ export default {
     addUser,
     updateUser,
     deleteUser,
-    registerUser
+    registerUser, 
+    loginUser
 };
