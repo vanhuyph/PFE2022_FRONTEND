@@ -5,7 +5,7 @@ import { useState } from 'react';
 import PostService from '../../services/PostService';
 import { AuthContext } from '../../contexts/AuthContext';
 
-const NewPostComponent = () => {
+const NewPostComponent = ({ onClose }) => {
   const [text, setText] = useState();
   const { userToken } = useContext(AuthContext);
   const { userInfo } = useContext(AuthContext);
@@ -15,9 +15,11 @@ const NewPostComponent = () => {
     content: text,
   };
   const addPost = () => {
+    setText()
     PostService.addPost(userToken, dataToSend)
       .then((response) => {
         console.log(response);
+        onClose()
         return response;
       })
       .catch((error) => console.log(error));
@@ -27,7 +29,7 @@ const NewPostComponent = () => {
     <>
       <Heading mt={5}>New Post</Heading>
       <FormControl isRequired>
-        <TextArea mt={5} onChangeText={(text) => setText(text)}></TextArea>
+        <TextArea mt={5} onChangeText={(text) => setText(text)} />
         <Button
           mt={5}
           width="100%"

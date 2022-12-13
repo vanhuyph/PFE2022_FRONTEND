@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, useContext } from 'react';
 import { RefreshControl } from 'react-native';
 import PostComponent from '../PostComponent/PostComponent';
 import NavBar from '../../components/NavBar/NavBar';
-import { useColorModeValue, ScrollView } from 'native-base';
+import { useColorModeValue, ScrollView, Text, Center } from 'native-base';
 import PostService from '../../services/PostService';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -17,7 +17,7 @@ const MainScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
   const bg = useColorModeValue('primary.50', 'primary.1000')
   const colorRefresh = useColorModeValue('black', 'white')
-  
+
   useEffect(() => {
     PostService.getAllFollowingPost(userInfo.id, userToken)
       .then((response) => {
@@ -50,9 +50,9 @@ const MainScreen = ({ navigation }) => {
           ></RefreshControl>
         }
       >
-        {posts.map((post) => (
+        {posts.length > 0 ? posts.map((post) => (
           <PostComponent key={post.id} post={post} navigation={navigation} />
-        ))}
+        )) : <Center p={4}>Start following someone to fill your feed</Center>}
       </ScrollView>
     </>
   );

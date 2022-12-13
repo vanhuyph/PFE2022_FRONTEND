@@ -50,7 +50,7 @@ const NavBar = ({ navigation, title }) => {
                     <Center>
                         <Actionsheet isOpen={isOpen} onClose={onClose}>
                             <Actionsheet.Content>
-                                <NewPostComponent/>
+                                <NewPostComponent onClose={onClose}/>
                             </Actionsheet.Content>
                         </Actionsheet>
                         <Heading size="md">{title}</Heading>
