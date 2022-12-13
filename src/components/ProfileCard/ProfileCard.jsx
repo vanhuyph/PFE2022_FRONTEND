@@ -8,7 +8,7 @@ const ProfileCard = ({ user }) => {
     <Box bg={bg} pt={8} pb={8}>
       <VStack space="2">
         <Heading size={'2xl'} px="4">
-          Profile name
+          {user}
         </Heading>
       </VStack>
     </Box>

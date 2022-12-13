@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useWindowDimensions, StatusBar, ActivityIndicator } from 'react-native';
-import { ScrollView, Text } from 'native-base';
+import { ScrollView, Text, Center } from 'native-base';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import PostComponent from '../PostComponent/PostComponent';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
@@ -36,7 +36,9 @@ export default function ProfileTabView({ navigation, route }) {
       .catch((error) => console.log(error));
   }, []);
 
+
   const FirstRoute = () => {
+    console.log(posts);
     return (
       <>
         {posts.length > 0 ? (
@@ -70,7 +72,7 @@ export default function ProfileTabView({ navigation, route }) {
             ))}
           </ScrollView>
         ) : (
-          <Text>You didn't like a post yet...</Text>
+          <Center p={7}>You didn't like a post yet...</Center>
         )}
       </>
     );
@@ -90,7 +92,7 @@ export default function ProfileTabView({ navigation, route }) {
   return (
     <>
       <NavBar navigation={navigation} title="Profile" />
-      <ProfileCard  />
+      {user?<ProfileCard user={user.username}/> : null}
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
