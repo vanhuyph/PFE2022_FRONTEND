@@ -38,7 +38,7 @@ export default function ProfileTabView({ navigation, route }) {
 
 
   const FirstRoute = () => {
-    console.log(posts);
+
     return (
       <>
         {posts.length > 0 ? (
