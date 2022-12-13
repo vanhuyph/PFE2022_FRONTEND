@@ -7,8 +7,13 @@ const getAllUser = () => {
     return request.then((response) => response.data);
 };
 
-const getUserBydID = (id) => {
-    const request = axios.get(baseUrl + `/${id}`);
+const getUserBydID = (id, userToken) => {
+    const request = axios.get(baseUrl + `${id}`, {
+        headers: {
+            'Authorization': 'Token ' + userToken,
+            'Content-Type': 'application/json',
+        }
+    });
     return request.then((response) => response.data);
 };
 
@@ -40,7 +45,6 @@ const loginUser = (newObject) => {
 const searchUser = (username, userToken) => {
     const request = axios.get(baseUrl + 'search/' + username, {
         headers: {
-            "Access-Control-Allow-Origin" : "*",
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
         }

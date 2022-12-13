@@ -5,7 +5,6 @@ const baseUrl = `${BASE_URL}/posts/`;
 const getAllPost = (userToken) => {
     const request = axios.get(baseUrl, {
         headers: {
-            "Access-Control-Allow-Origin" : "*",
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
         }
@@ -13,10 +12,9 @@ const getAllPost = (userToken) => {
     return request.then((response) => response.data);
 };
 
-const getPostBydID = (id) => {
-    const request = axios.get(baseUrl + `/${id}`, {
+const getPostByUserID = (id, userToken) => {
+    const request = axios.get(baseUrl + `user/${id}`, {
         headers: {
-            "Access-Control-Allow-Origin" : "*",
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
         }
@@ -24,10 +22,19 @@ const getPostBydID = (id) => {
     return request.then((response) => response.data);
 };
 
-const addPost = (newObject) => {
+const addPost = (userToken, newObject) => {
     const request = axios.post(baseUrl, newObject, {
         headers: {
-            "Access-Control-Allow-Origin" : "*",
+            'Authorization': 'Token ' + userToken,
+            'Content-Type': 'application/json',
+        }
+    });
+    return request.then((response) => response.data);
+};
+
+const getAllFollowingPost = (userId, userToken) => {
+    const request = axios.get(baseUrl + `subscription/${userId}`, {
+        headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
         }
@@ -38,6 +45,7 @@ const addPost = (newObject) => {
 
 export default {
     getAllPost,
-    getPostBydID,
+    getPostByUserID,
     addPost,
+    getAllFollowingPost
 };

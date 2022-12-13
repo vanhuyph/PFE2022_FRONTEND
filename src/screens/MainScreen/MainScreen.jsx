@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, useContext } from 'react';
-import { RefreshControl, ScrollView, } from 'react-native';
+import { RefreshControl } from 'react-native';
 import PostComponent from '../PostComponent/PostComponent';
 import NavBar from '../../components/NavBar/NavBar';
-import { useColorModeValue } from 'native-base';
+import { useColorModeValue, ScrollView } from 'native-base';
 import PostService from '../../services/PostService';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -13,41 +13,46 @@ const wait = (timeout) => {
 const MainScreen = ({ navigation }) => {
   const [refresh, setRefreshing] = useState(false);
   const { userToken } = useContext(AuthContext);
-  const [posts, setPosts] = useState([])
-
+  const { userInfo } = useContext(AuthContext);
+  const [posts, setPosts] = useState([]);
+  const bg = useColorModeValue('primary.50', 'primary.1000')
+  const colorRefresh = useColorModeValue('black', 'white')
+  
   useEffect(() => {
-    PostService.getAllPost(userToken)
+    PostService.getAllFollowingPost(userInfo.id, userToken)
       .then((response) => {
-        //console.log(response[0]);
-        return response
+        // console.log(response);
+        return response;
       })
-      .then(data => {
-        setPosts(data)
+      .then((data) => {
+        setPosts(data);
       })
-      .catch((error) => console.log(error))
-  }, [refresh])
+      .catch((error) => console.log(error));
+  }, [refresh]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    console.log("refresh");
+    console.log('refresh');
     wait(5000).then(() => setRefreshing(false));
   }, []);
 
   return (
     <>
       <NavBar navigation={navigation} title="Home" />
-      <ScrollView
+      <ScrollView bg={bg}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
             onRefresh={onRefresh}
             progressBackgroundColor={useColorModeValue('white', '#242526')}
+            colors={[colorRefresh]}
+            tintColor={colorRefresh}
           ></RefreshControl>
         }
       >
-        {
-          posts.map(post =><PostComponent key={post.id} user={post.user} postText={post.content} commentCount={post.comment_count} likeCount={post.like_count} retweetCount={post.retweet_count}/>)
-        }
+        {posts.map((post) => (
+          <PostComponent key={post.id} post={post} navigation={navigation} />
+        ))}
       </ScrollView>
     </>
   );
