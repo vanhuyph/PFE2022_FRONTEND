@@ -17,7 +17,6 @@ const MainScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
   const bg = useColorModeValue('primary.50', 'primary.1000')
   const colorRefresh = useColorModeValue('black', 'white')
-
   useEffect(() => {
     PostService.getAllFollowingPost(userInfo.id, userToken)
       .then((response) => {

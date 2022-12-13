@@ -12,6 +12,16 @@ const getLikedListByUserID = (userID, userToken) => {
     return request.then((response) => response.data);
 };
 
+const addLike = (userToken, newObject) => {
+    const request = axios.post(baseUrl+'create/', newObject, {
+        headers: {
+            'Authorization': 'Token ' + userToken,
+            'Content-Type': 'application/json',
+        }
+    });
+    return request.then((response) => response.data);
+};
+
 export default {
     getLikedListByUserID
 };

@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { TouchableOpacity } from 'react-native';
 import { Heading, Box, VStack, HStack, useColorModeValue, Text, Input, Button, TextArea } from 'native-base'
 import AntIcon from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
+import LikeService from '../../services/LikeService';
+import { AuthContext } from '../../contexts/AuthContext';
 const color = "#812bd6"
 
 const PostComponent = ({ navigation, post }) => {
@@ -12,12 +14,25 @@ const PostComponent = ({ navigation, post }) => {
     const [commentNb, setCommentNb] = useState(post.comment_count)
     const [likeNb, setLikeNb] = useState(post.like_count)
     const [retweetNb, setRetweetNb] = useState(post.retweet_count)
+    const { userInfo } = useContext(AuthContext);
     const bg = useColorModeValue("black", "#838383")
     const colorText = useColorModeValue("black", "white")
+    let dataToSend = {
+        user: userInfo.id,
+        post: post.id,
+    };
+
     const onPressLike = () => {
         if (!liked) {
             setLiked(true)
             setLikeNb(likeNb + 1)
+            LikeService.addLike(userInfo.tokens, dataToSend)
+                .then((response) => {
+                    console.log(response);
+                    return response;
+                })
+                .catch((error) => console.log(error));
+
         } else {
             setLiked(false)
             setLikeNb(likeNb - 1)
