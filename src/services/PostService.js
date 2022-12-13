@@ -12,8 +12,8 @@ const getAllPost = (userToken) => {
     return request.then((response) => response.data);
 };
 
-const getPostBydID = (id) => {
-    const request = axios.get(baseUrl + `/${id}`, {
+const getPostByUserID = (id, userToken) => {
+    const request = axios.get(baseUrl + `user/${id}`, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const getAllFollowingPost = (userId, userToken) => {
 
 export default {
     getAllPost,
-    getPostBydID,
+    getPostByUserID,
     addPost,
     getAllFollowingPost
 };
