@@ -5,7 +5,7 @@ import UserService from "../services/UserService";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [userToken, setUserToken] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
 
@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }) => {
             AsyncStorage.setItem('userToken', userInfo.tokens);
         }).catch((error) => {
             console.log(error);
+            setIsLoading(false);
         })
-        setIsLoading(false);
     }
 
     const logout = () => {

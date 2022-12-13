@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import LoginScreen from '../../screens/LoginScreen/LoginScreen';
 import CreateAccountScreen from '../../screens/CreateAccountScreen/CreateAccountScreen';
-import { ActivityIndicator, View } from 'react-native';
 import { AuthContext } from '../../contexts/AuthContext';
 import MainScreen from '../../screens/MainScreen/MainScreen';
 import ProfileTabView from '../../screens/ProfileScreen/ProfileScreen';
@@ -14,15 +13,8 @@ const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const AppNav = () => {
-  const { isLoading, userToken } = useContext(AuthContext);
+  const { userToken } = useContext(AuthContext);
 
-  if (isLoading) {
-    return (
-      <View>
-        <ActivityIndicator size={'large'}></ActivityIndicator>
-      </View>
-    );
-  }
   return (
     <>
       {userToken === null ? (

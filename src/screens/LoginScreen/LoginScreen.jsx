@@ -15,7 +15,8 @@ const LoginScreen = ({ navigation }) => {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
- 
+  const { isLoading } = useContext(AuthContext);
+
   return (
     <Center
       p={4}
@@ -53,6 +54,7 @@ const LoginScreen = ({ navigation }) => {
             </Box>
             <Box>
               <Button
+                isLoading={isLoading}
                 size="lg"
                 onPress={() => {
                   login(email, password);
