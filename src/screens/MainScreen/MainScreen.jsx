@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, useContext } from 'react';
-import { RefreshControl, ScrollView } from 'react-native';
+import { RefreshControl } from 'react-native';
 import PostComponent from '../PostComponent/PostComponent';
 import NavBar from '../../components/NavBar/NavBar';
-import { useColorModeValue } from 'native-base';
+import { useColorModeValue, ScrollView } from 'native-base';
 import PostService from '../../services/PostService';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -15,6 +15,8 @@ const MainScreen = ({ navigation }) => {
   const { userToken } = useContext(AuthContext);
   const { userInfo } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
+  const bg = useColorModeValue('primary.50', 'primary.1000')
+  const colorRefresh = useColorModeValue('black', 'white')
   
   useEffect(() => {
     PostService.getAllFollowingPost(userInfo.id, userToken)
@@ -37,12 +39,14 @@ const MainScreen = ({ navigation }) => {
   return (
     <>
       <NavBar navigation={navigation} title="Home" />
-      <ScrollView
+      <ScrollView bg={bg}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
             onRefresh={onRefresh}
             progressBackgroundColor={useColorModeValue('white', '#242526')}
+            colors={[colorRefresh]}
+            tintColor={colorRefresh}
           ></RefreshControl>
         }
       >

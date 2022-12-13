@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, SafeAreaView, Pressable, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Heading, Box, VStack, HStack, useColorModeValue, Text, Input, Button, TextArea } from 'native-base'
 import AntIcon from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 const color = "#812bd6"
 
-const PostComponent = ({ navigation, post, user, postText, commentCount, likeCount, retweetCount, idPost }) => {
+const PostComponent = ({ navigation, post }) => {
     const [liked, setLiked] = useState(false)
     const [rePosted, setRePosted] = useState(false)
     const [reply, setReply] = useState(false)
