@@ -22,7 +22,7 @@ const getPostBydID = (id) => {
     return request.then((response) => response.data);
 };
 
-const addPost = (newObject) => {
+const addPost = (userToken, newObject) => {
     const request = axios.post(baseUrl, newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,

@@ -15,7 +15,7 @@ const MainScreen = ({ navigation }) => {
   const { userToken } = useContext(AuthContext);
   const { userInfo } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
-
+  
   useEffect(() => {
     PostService.getAllFollowingPost(userInfo.id, userToken)
       .then((response) => {
