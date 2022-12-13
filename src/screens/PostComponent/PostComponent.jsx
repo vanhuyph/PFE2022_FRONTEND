@@ -57,7 +57,7 @@ const PostComponent = ({ navigation, post, user, postText, commentCount, likeCou
         <Box p={5} borderBottomWidth="0.2" borderBottomColor="gray.300" _dark={{ bg: 'primary.1000' }} _light={{ bg: 'primary.50' }}>
             <VStack space={5}>
                 <TouchableOpacity>
-                    <Heading size="sm" >{post.user}</Heading>
+                    <Heading size="sm">{post.author_pseudo}</Heading>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={onPressPost}>
                     <Text>{post.content}</Text>

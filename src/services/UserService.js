@@ -40,7 +40,6 @@ const loginUser = (newObject) => {
 const searchUser = (username, userToken) => {
     const request = axios.get(baseUrl + 'search/' + username, {
         headers: {
-            "Access-Control-Allow-Origin" : "*",
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
         }

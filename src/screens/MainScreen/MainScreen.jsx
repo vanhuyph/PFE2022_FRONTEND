@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useContext } from 'react';
-import { RefreshControl, ScrollView, } from 'react-native';
+import { RefreshControl, ScrollView } from 'react-native';
 import PostComponent from '../PostComponent/PostComponent';
 import NavBar from '../../components/NavBar/NavBar';
 import { useColorModeValue } from 'native-base';
@@ -13,23 +13,24 @@ const wait = (timeout) => {
 const MainScreen = ({ navigation }) => {
   const [refresh, setRefreshing] = useState(false);
   const { userToken } = useContext(AuthContext);
-  const [posts, setPosts] = useState([])
+  const { userInfo } = useContext(AuthContext);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    PostService.getAllPost(userToken)
+    PostService.getAllFollowingPost(userInfo.id, userToken)
       .then((response) => {
-        //console.log(response[0]);
-        return response
+        // console.log(response);
+        return response;
       })
-      .then(data => {
-        setPosts(data)
+      .then((data) => {
+        setPosts(data);
       })
-      .catch((error) => console.log(error))
-  }, [refresh])
+      .catch((error) => console.log(error));
+  }, [refresh]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    console.log("refresh");
+    console.log('refresh');
     wait(5000).then(() => setRefreshing(false));
   }, []);
 
@@ -45,9 +46,9 @@ const MainScreen = ({ navigation }) => {
           ></RefreshControl>
         }
       >
-        {
-          posts.map(post => <PostComponent key={post.id} post={post} navigation={navigation}/>)
-        }
+        {posts.map((post) => (
+          <PostComponent key={post.id} post={post} navigation={navigation} />
+        ))}
       </ScrollView>
     </>
   );
