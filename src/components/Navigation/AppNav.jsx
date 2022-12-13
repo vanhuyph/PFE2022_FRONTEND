@@ -8,6 +8,7 @@ import MainScreen from '../../screens/MainScreen/MainScreen';
 import ProfileTabView from '../../screens/ProfileScreen/ProfileScreen';
 import SideBar from '../../screens/SideBar/SideBar';
 import SearchScreen from '../../screens/SearchScreen/SearchScreen'
+import PostScreen from '../../screens/PostScreen/PostScreen';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,6 +36,7 @@ const AppNav = () => {
           <Drawer.Screen name="Home" component={MainScreen} />
           <Drawer.Screen name="Profil" component={ProfileTabView} />
           <Drawer.Screen name="Search" component={SearchScreen} />
+          <Drawer.Screen name="Post" component={PostScreen} />
         </Drawer.Navigator>
       )}
     </>

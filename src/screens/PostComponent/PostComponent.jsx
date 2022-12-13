@@ -5,16 +5,15 @@ import AntIcon from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 const color = "#812bd6"
 
-const PostComponent = ({ user, postText, commentCount, likeCount, retweetCount }) => {
+const PostComponent = ({ navigation, post, user, postText, commentCount, likeCount, retweetCount, idPost }) => {
     const [liked, setLiked] = useState(false)
     const [rePosted, setRePosted] = useState(false)
     const [reply, setReply] = useState(false)
-    const [commentNb, setCommentNb] = useState(commentCount)
-    const [likeNb, setLikeNb] = useState(likeCount)
-    const [retweetNb, setRetweetNb] = useState(retweetCount)
+    const [commentNb, setCommentNb] = useState(post.comment_count)
+    const [likeNb, setLikeNb] = useState(post.like_count)
+    const [retweetNb, setRetweetNb] = useState(post.retweet_count)
     const bg = useColorModeValue("black", "#838383")
     const colorText = useColorModeValue("black", "white")
-
     const onPressLike = () => {
         if (!liked) {
             setLiked(true)
@@ -48,11 +47,21 @@ const PostComponent = ({ user, postText, commentCount, likeCount, retweetCount }
         setReply(false)
     }
 
+    const onPressPost = () => {
+        if (navigation) {
+            navigation.navigate('Post', { post: post })
+        }
+    }
+
     return (
         <Box p={5} borderBottomWidth="0.2" borderBottomColor="gray.300" _dark={{ bg: 'primary.1000' }} _light={{ bg: 'primary.50' }}>
             <VStack space={5}>
-                <Heading size="sm" >{user}</Heading>
-                <Text>{postText}</Text>
+                <TouchableOpacity>
+                    <Heading size="sm" >{post.user}</Heading>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={onPressPost}>
+                    <Text>{post.content}</Text>
+                </TouchableOpacity>
                 <HStack justifyContent="space-around">
                     <Box>
                         <HStack space={2}>

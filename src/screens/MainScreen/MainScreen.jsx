@@ -46,7 +46,7 @@ const MainScreen = ({ navigation }) => {
         }
       >
         {
-          posts.map(post =><PostComponent key={post.id} user={post.user} postText={post.content} commentCount={post.comment_count} likeCount={post.like_count} retweetCount={post.retweet_count}/>)
+          posts.map(post => <PostComponent key={post.id} post={post} navigation={navigation}/>)
         }
       </ScrollView>
     </>
