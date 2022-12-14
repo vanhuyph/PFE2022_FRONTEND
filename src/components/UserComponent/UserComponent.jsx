@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Box, Heading, HStack, Button, Text } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 
-const UserComponent = ({ user }) => {
+const UserComponent = ({ navigation, user }) => {
+
+ 
+  const onPressUser =  useCallback(() => {
+    navigation.navigate('Profil', { userID: user.id });
+  }, [navigation])
+
+  console.log(user);
+
   return (
     <Box
       p={6}
@@ -12,7 +20,7 @@ const UserComponent = ({ user }) => {
       _light={{ bg: 'primary.50' }}
     >
       <HStack space={5} justifyContent="space-around">
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPressUser}>
           <Box my="auto">
             <Heading size="sm">{user.username}</Heading>
           </Box>

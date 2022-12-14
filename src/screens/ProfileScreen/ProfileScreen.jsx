@@ -74,7 +74,7 @@ export default function ProfileTabView({ navigation, route }) {
             ))}
           </ScrollView>
         ) : (
-          <Text>You didn't post yet...</Text>
+          <Center p={7}>You didn't post yet...</Center>
         )}
       </>
     );

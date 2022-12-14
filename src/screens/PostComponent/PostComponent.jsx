@@ -19,8 +19,7 @@ const PostComponent = ({ navigation, post }) => {
     const { userInfo } = useContext(AuthContext);
     const bg = useColorModeValue("black", "#838383")
     const colorText = useColorModeValue("black", "white")
-    console.log(userInfo.id);
-    console.log(post);
+
     let dataToSendLike = {
         user_id: userInfo.id,
         post_id: post.id,

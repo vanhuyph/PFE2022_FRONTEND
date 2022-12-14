@@ -52,7 +52,7 @@ const SearchScreen = ({ navigation }) => {
       </Center>
       <ScrollView height="100%">
         {users.map((user) => (
-          <UserComponent key={user.id} user={user} />
+          <UserComponent key={user.id} user={user} navigation={navigation}/>
         ))}
       </ScrollView>
     </Box>
