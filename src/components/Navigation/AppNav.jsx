@@ -31,6 +31,7 @@ const AppNav = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
        <Stack.Screen name="Home" component={MainScreen} />
        <Stack.Screen name="Post" component={PostScreen} /> 
+       <Stack.Screen name="Profil" component={ProfileTabView} /> 
        <Stack.Screen name="PostComponent" component={PostComponent} /> 
       </Stack.Navigator>
     )
