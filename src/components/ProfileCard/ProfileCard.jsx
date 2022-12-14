@@ -55,7 +55,7 @@ const ProfileCard = ({ user }) => {
           {button}
         </HStack>
         <HStack pl={5} pt={10} space={5}>
-          <Text>{user.following_count} Subcriptions</Text>
+          <Text>{user.following_count} Subscriptions</Text>
           <Text>{user.followers_count} Followers</Text>
         </HStack>
       </VStack>
