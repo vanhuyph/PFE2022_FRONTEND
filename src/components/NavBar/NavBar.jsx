@@ -1,20 +1,24 @@
 import { HStack, Box, Heading, useColorModeValue, Center, Actionsheet, useDisclose, Button, Text } from 'native-base'
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign"
 import { TouchableOpacity } from 'react-native';
 import NewPostComponent from '../NewPostComponent/NewPostComponent';
+import { AuthContext } from '../../contexts/AuthContext';
 
 
-const NavBar = ({ navigation, title }) => {
+const NavBar = ({ navigation, title, user }) => {
     let icon;
     let actionSheet;
     const { isOpen, onOpen, onClose } = useDisclose()
     const bg = useColorModeValue('primary.50', 'primary.1000')
     const colorText = useColorModeValue('black', 'white')
+    const { userToken, userInfo } = useContext(AuthContext);
 
     const handlePressMenuButton = useCallback(() => {
         if (title === "Post") {
+            navigation.goBack()
+        } else if (user && user !== userInfo.id) {
             navigation.goBack()
         } else {
             navigation.openDrawer()
@@ -22,7 +26,9 @@ const NavBar = ({ navigation, title }) => {
     }, [navigation])
 
 
-    if (title === "Post") {
+    if (title === "Post" ) {
+        icon = <AntDesign name='arrowleft' size={20} color={colorText} />
+    } else if (user && user !== userInfo.id) {
         icon = <AntDesign name='arrowleft' size={20} color={colorText} />
     } else {
         icon = <FontAwesome name='navicon' size={20} color={colorText} />
@@ -50,7 +56,7 @@ const NavBar = ({ navigation, title }) => {
                     <Center>
                         <Actionsheet isOpen={isOpen} onClose={onClose}>
                             <Actionsheet.Content>
-                                <NewPostComponent/>
+                                <NewPostComponent onClose={onClose} />
                             </Actionsheet.Content>
                         </Actionsheet>
                         <Heading size="md">{title}</Heading>

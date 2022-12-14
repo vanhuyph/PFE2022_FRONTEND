@@ -7,18 +7,23 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 const SideBar = (props) => {
   const { navigation } = props;
-  const { logout, userInfo } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
+  const { userInfo } = useContext(AuthContext);
 
   const handlePressMain = useCallback(() => {
-    navigation.navigate('Home');
+    navigation.navigate('StackHome');
   }, [navigation]);
 
   const handlePressProfil = useCallback(() => {
-    navigation.navigate('Profil', { userID: userInfo.id });
+    
+    console.log(userInfo);
+
+      navigation.navigate('StackProfil', { userID: userInfo.id });
+
   }, [navigation]);
 
   const handlePressSearch = useCallback(() => {
-    navigation.navigate('Search');
+    navigation.navigate('StackSearch');
   }, [navigation]);
 
   return (

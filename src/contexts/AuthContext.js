@@ -42,9 +42,10 @@ export const AuthProvider = ({ children }) => {
             setIsLoading(true);
             let userInfo = await AsyncStorage.getItem('userInfo');
             let userToken = await AsyncStorage.getItem('userToken');
-            console.log(userToken);
+            console.log("Token LoggedIn " +userToken);
             userInfo = JSON.parse(userInfo);
             if (userInfo) {
+                console.log(userInfo);
                 setUserToken(userToken);
                 setUserInfo(userInfo);
             }
