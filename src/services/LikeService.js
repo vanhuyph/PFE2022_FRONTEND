@@ -13,7 +13,17 @@ const getLikedListByUserID = (userID, userToken) => {
 };
 
 const addLike = (userToken, newObject) => {
-    const request = axios.post(baseUrl+'create/', newObject, {
+    const request = axios.post(baseUrl, newObject, {
+        headers: {
+            'Authorization': 'Token ' + userToken,
+            'Content-Type': 'application/json',
+        }
+    });
+    return request.then((response) => response.data);
+};
+
+const deleteLike = (userToken, newObject) => {
+    const request = axios.post(baseUrl, newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
@@ -23,5 +33,7 @@ const addLike = (userToken, newObject) => {
 };
 
 export default {
-    getLikedListByUserID
+    getLikedListByUserID,
+    addLike,
+    deleteLike
 };

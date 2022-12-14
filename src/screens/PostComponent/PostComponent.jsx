@@ -4,7 +4,9 @@ import { Heading, Box, VStack, HStack, useColorModeValue, Text, Input, Button, T
 import AntIcon from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import LikeService from '../../services/LikeService';
+import RetweetService from '../../services/RetweetService';
 import { AuthContext } from '../../contexts/AuthContext';
+import CommentService from '../../services/CommentService';
 const color = "#812bd6"
 
 const PostComponent = ({ navigation, post }) => {
@@ -17,16 +19,25 @@ const PostComponent = ({ navigation, post }) => {
     const { userInfo } = useContext(AuthContext);
     const bg = useColorModeValue("black", "#838383")
     const colorText = useColorModeValue("black", "white")
-    let dataToSend = {
+    console.log(userInfo.id);
+    console.log(post);
+    let dataToSendLike = {
+        user_id: userInfo.id,
+        post_id: post.id,
+    };
+    let dataToSendRt = {
         user: userInfo.id,
         post: post.id,
     };
+    let commentToSend = {
+
+    }
 
     const onPressLike = () => {
         if (!liked) {
             setLiked(true)
             setLikeNb(likeNb + 1)
-            LikeService.addLike(userInfo.tokens, dataToSend)
+            LikeService.addLike(userInfo.tokens, dataToSendLike)
                 .then((response) => {
                     console.log(response);
                     return response;
@@ -36,6 +47,12 @@ const PostComponent = ({ navigation, post }) => {
         } else {
             setLiked(false)
             setLikeNb(likeNb - 1)
+            LikeService.deleteLike(userInfo.tokens, dataToSendLike)
+                .then((response) => {
+                    console.log(response);
+                    return response;
+                })
+                .catch((error) => console.log(error));
         }
     }
 
@@ -43,9 +60,21 @@ const PostComponent = ({ navigation, post }) => {
         if (!rePosted) {
             setRePosted(true)
             setRetweetNb(retweetNb + 1)
+            RetweetService.addRetweet(userInfo.tokens, dataToSendRt)
+                .then((response) => {
+                    console.log(response);
+                    return response;
+                })
+                .catch((error) => console.log(error));
         } else {
             setRePosted(false)
             setRetweetNb(retweetNb - 1)
+            RetweetService.deleteRetweet(userInfo.tokens, dataToSendRt)
+                .then((response) => {
+                    console.log(response);
+                    return response;
+                })
+                .catch((error) => console.log(error));
         }
     }
 
@@ -58,6 +87,12 @@ const PostComponent = ({ navigation, post }) => {
     }
 
     const onSendComment = () => {
+        CommentService.addComment(userInfo.tokens, commentToSend)
+        .then((response) => {
+            console.log(response);
+            return response;
+        })
+        .catch((error) => console.log(error));
         setCommentNb(commentNb + 1)
         setReply(false)
     }
