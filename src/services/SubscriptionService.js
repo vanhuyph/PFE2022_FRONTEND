@@ -1,9 +1,8 @@
 import axios from "axios";
 import { BASE_URL } from '@env'
-const baseUrl = `${BASE_URL}/retweets/`;
-console.log(baseUrl);
+const baseUrl = `${BASE_URL}/subscriptions/`;
 
-const addRetweet = (userToken, newObject) => {
+const createSubscription = (newObject, userToken) => {
     const request = axios.post(baseUrl + 'create/', newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,
@@ -13,7 +12,7 @@ const addRetweet = (userToken, newObject) => {
     return request.then((response) => response.data);
 };
 
-const deleteRetweet = (userToken, newObject) => {
+const deleteSubscription = (newObject, userToken) => {
     const request = axios.post(baseUrl + 'delete/', newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,
@@ -24,6 +23,6 @@ const deleteRetweet = (userToken, newObject) => {
 };
 
 export default {
-    addRetweet,
-    deleteRetweet
+    createSubscription,
+    deleteSubscription
 };

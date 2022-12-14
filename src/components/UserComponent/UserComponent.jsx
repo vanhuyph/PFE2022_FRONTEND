@@ -1,13 +1,32 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { Box, Heading, HStack, Button, Text } from 'native-base';
 import { TouchableOpacity } from 'react-native';
+import { AuthContext } from '../../contexts/AuthContext';
+import SubscriptionService from '../../services/SubscriptionService';
 
 const UserComponent = ({ navigation, user }) => {
+  const { userToken, userInfo } = useContext(AuthContext);
 
- 
-  const onPressUser =  useCallback(() => {
+  let dataToSend = {
+    user: userInfo.id,
+    subscription: user.id,
+  };
+
+  const createSubscription = () => {
+    SubscriptionService.createSubscription(dataToSend, userToken)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  };
+
+  const deleteSubscription = () => {
+    SubscriptionService.deleteSubscription(dataToSend, userToken)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  };
+
+  const onPressUser = useCallback(() => {
     navigation.navigate('Profil', { userID: user.id });
-  }, [navigation])
+  }, [navigation]);
 
   console.log(user);
 
@@ -25,7 +44,7 @@ const UserComponent = ({ navigation, user }) => {
             <Heading size="sm">{user.username}</Heading>
           </Box>
         </TouchableOpacity>
-        <Button>
+        <Button onPress={() => createSubscription()}>
           <Text color="white" bold>
             Follow
           </Text>

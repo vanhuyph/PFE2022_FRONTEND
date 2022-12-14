@@ -3,7 +3,7 @@ import { BASE_URL } from '@env'
 const baseUrl = `${BASE_URL}/posts/`;
 
 const addComment = (userToken, newObject) => {
-    const request = axios.post(baseUrl+'create/', newObject, {
+    const request = axios.post(baseUrl + 'create/', newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
@@ -13,7 +13,17 @@ const addComment = (userToken, newObject) => {
 };
 
 const deleteComment = (userToken, newObject) => {
-    const request = axios.delete(baseUrl+'delete/', newObject, {
+    const request = axios.delete(baseUrl + 'delete/', newObject, {
+        headers: {
+            'Authorization': 'Token ' + userToken,
+            'Content-Type': 'application/json',
+        }
+    });
+    return request.then((response) => response.data);
+};
+
+const getAllCommentsFromPostID = (userToken, postID) => {
+    const request = axios.get(baseUrl + `comments/${postID}`, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
@@ -24,5 +34,6 @@ const deleteComment = (userToken, newObject) => {
 
 export default {
     addComment,
-    deleteComment
+    deleteComment,
+    getAllCommentsFromPostID
 };
