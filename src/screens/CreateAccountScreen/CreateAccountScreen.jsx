@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Center,
   Box,
@@ -9,10 +9,12 @@ import {
   FormControl,
 } from 'native-base';
 import UserService from '../../services/UserService';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const CreateAccountScreen = ({ navigation }) => {
   const [formData, setData] = useState({});
   const [errors, setErrors] = useState({});
+  const { login, isLoading } = useContext(AuthContext);
 
   const validate = () => {
     if (!formData.username) {
@@ -38,10 +40,10 @@ const CreateAccountScreen = ({ navigation }) => {
         email: formData.email,
         password: formData.password,
       };
-      console.log('data to send : ' + dataToSend);
 
       UserService.registerUser(dataToSend)
         .then((response) => {
+          login(formData.email, formData.password);
           console.log(response);
           console.log('Registration success');
         })
@@ -109,7 +111,7 @@ const CreateAccountScreen = ({ navigation }) => {
             />
           </FormControl>
         </VStack>
-        <Button size="lg" onPress={onSubmit}>
+        <Button size="lg" isLoading={isLoading} onPress={onSubmit}>
           Create account
         </Button>
         <Box pt={8}>
