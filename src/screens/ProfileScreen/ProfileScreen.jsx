@@ -19,8 +19,13 @@ export default function ProfileTabView({ navigation, route }) {
   const layout = useWindowDimensions();
   const bg = useColorModeValue('white', '#242526');
   const textColor = useColorModeValue('black', 'white');
-  const userID = route.params.userID;
-  const { userToken } = useContext(AuthContext);
+  const { userToken, userInfo } = useContext(AuthContext);
+  let userID;
+  if (route.params) {
+    userID = route.params.userID;
+  }else{
+    userID = userInfo.id
+  }
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const [likedPostsList, setLikedPostsList] = useState([]);
@@ -29,6 +34,7 @@ export default function ProfileTabView({ navigation, route }) {
   const colorRefresh = useColorModeValue('black', 'white')
 
   useEffect(() => {
+
     UserService.getUserBydID(userID, userToken)
       .then((response) => setUser(response))
       .catch((error) => console.log(error));
@@ -55,15 +61,15 @@ export default function ProfileTabView({ navigation, route }) {
       <>
         {posts.length > 0 ? (
           <ScrollView bg={bg}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={onRefresh}
-              progressBackgroundColor={useColorModeValue('white', '#242526')}
-              colors={[colorRefresh]}
-              tintColor={colorRefresh}
-            ></RefreshControl>
-          }
+            refreshControl={
+              <RefreshControl
+                refreshing={refresh}
+                onRefresh={onRefresh}
+                progressBackgroundColor={useColorModeValue('white', '#242526')}
+                colors={[colorRefresh]}
+                tintColor={colorRefresh}
+              ></RefreshControl>
+            }
           >
             {posts.map((post) => (
               <PostComponent
@@ -85,15 +91,15 @@ export default function ProfileTabView({ navigation, route }) {
       <>
         {likedPostsList.length > 0 ? (
           <ScrollView bg={bg}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={onRefresh}
-              progressBackgroundColor={useColorModeValue('white', '#242526')}
-              colors={[colorRefresh]}
-              tintColor={colorRefresh}
-            ></RefreshControl>
-          }
+            refreshControl={
+              <RefreshControl
+                refreshing={refresh}
+                onRefresh={onRefresh}
+                progressBackgroundColor={useColorModeValue('white', '#242526')}
+                colors={[colorRefresh]}
+                tintColor={colorRefresh}
+              ></RefreshControl>
+            }
           >
             {likedPostsList.map((likedPost) => (
               <PostComponent
@@ -123,7 +129,7 @@ export default function ProfileTabView({ navigation, route }) {
 
   return (
     <>
-      <NavBar navigation={navigation} title="Profile" />
+      <NavBar navigation={navigation} title="Profile" user={userID} />
       {user ? <ProfileCard user={user.username} /> : <ActivityIndicator size="large" />}
       <TabView
         navigationState={{ index, routes }}

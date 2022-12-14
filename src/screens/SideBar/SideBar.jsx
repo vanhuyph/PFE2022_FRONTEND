@@ -11,19 +11,19 @@ const SideBar = (props) => {
   const { userInfo } = useContext(AuthContext);
 
   const handlePressMain = useCallback(() => {
-    navigation.navigate('Home');
+    navigation.navigate('StackHome');
   }, [navigation]);
 
   const handlePressProfil = useCallback(() => {
     
     console.log(userInfo);
 
-      navigation.navigate('Profil', { userID: userInfo.id });
+      navigation.navigate('StackProfil', { userID: userInfo.id });
 
   }, [navigation]);
 
   const handlePressSearch = useCallback(() => {
-    navigation.navigate('Search');
+    navigation.navigate('StackSearch');
   }, [navigation]);
 
   return (

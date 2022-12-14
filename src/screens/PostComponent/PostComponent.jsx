@@ -21,8 +21,8 @@ const PostComponent = ({ navigation, post }) => {
     const colorText = useColorModeValue("black", "white")
 
     let dataToSendLike = {
-        user_id: userInfo.id,
-        post_id: post.id,
+        user: userInfo.id,
+        post: post.id,
     };
     let dataToSendRt = {
         user: userInfo.id,

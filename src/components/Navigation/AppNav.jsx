@@ -16,6 +16,32 @@ const Drawer = createDrawerNavigator();
 const AppNav = () => {
   const { userToken, userInfo } = useContext(AuthContext);
 
+  const StackSearch = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+       <Stack.Screen name="SearchScreen" component={SearchScreen} />
+       <Stack.Screen name="Profil" component={ProfileTabView} /> 
+       <Stack.Screen name="Post" component={PostScreen} /> 
+      </Stack.Navigator>
+    )
+  }
+  const StackHome = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+       <Stack.Screen name="Home" component={MainScreen} />
+       <Stack.Screen name="Post" component={PostScreen} /> 
+      </Stack.Navigator>
+    )
+  }
+  const StackProfil = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+       <Stack.Screen name="Profil" component={ProfileTabView} />
+       <Stack.Screen name="Post" component={PostScreen} /> 
+      </Stack.Navigator>
+    )
+  }
+
   return (
     <>
       {userToken === null || userInfo === null ? (
@@ -33,9 +59,9 @@ const AppNav = () => {
             headerStyle: { backgroundColor: '242526' },
           }}
         >
-          <Drawer.Screen name="Home" component={MainScreen} />
-          <Drawer.Screen name="Profil" component={ProfileTabView} />
-          <Drawer.Screen name="Search" component={SearchScreen} />
+          <Drawer.Screen name="StackHome" component={StackHome} />
+          <Drawer.Screen name="StackProfil" component={StackProfil} />
+          <Drawer.Screen name="StackSearch" component={StackSearch} />
           <Drawer.Screen name="Post" component={PostScreen} />
         </Drawer.Navigator>
       )}
