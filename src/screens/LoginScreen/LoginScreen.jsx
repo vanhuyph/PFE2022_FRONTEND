@@ -18,68 +18,55 @@ const LoginScreen = ({ navigation }) => {
   const { isLoading } = useContext(AuthContext);
 
   return (
-    <Center
-      p={4}
-      height="100%"
-      _light={{ bg: 'primary.50' }}
-      _dark={{ bg: 'primary.1000' }}
-      safeArea
-    >
-      <VStack width={315} space={8} height="100%">
-        <Box height="30%" pt={8}>
-          <Heading size="2xl" mt={10}>
-            Login
-          </Heading>
-        </Box>
-        <FormControl isRequired>
-          <VStack space={10} height="40%">
-            <Box>
-              <FormControl.Label>Email</FormControl.Label>
-              <Input
-                size="xl"
-                variant="underlined"
-                value={email}
-                onChangeText={(text) => setEmail(text)}
-              />
-            </Box>
-            <Box>
-              <FormControl.Label>Password</FormControl.Label>
-              <Input
-                type="password"
-                size="xl"
-                variant="underlined"
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-              />
-            </Box>
-            <Box>
-              <Button
-                isLoading={isLoading}
-                size="lg"
-                onPress={() => {
-                  login(email, password);
-                }}
-              >
-                Login
-              </Button>
-            </Box>
-          </VStack>
-        </FormControl>
-        <Box alignItems="center" pt={8}>
-          <Text>Don't have an account?</Text>
+    <Center h="100%" safeArea bg="primary.50">
+      <Box p="2" h="100%" py="8" w="90%" maxW="290">
+        <Heading size="2xl" my={10}>
+          Login
+        </Heading>
+        <VStack space={10} mt="16">
+          <FormControl isRequired>
+            <FormControl.Label>Email</FormControl.Label>
+            <Input
+              size='xl'
+              variant="underlined"
+              onChangeText={(text) => setEmail(text)}
+              value={email}
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormControl.Label>Password</FormControl.Label>
+            <Input
+              size='xl'
+              variant="underlined"
+              type="password"
+              onChangeText={(text) => setPassword(text)}
+              value={password}
+            />
+          </FormControl>
           <Button
-            size="lg"
-            width="100%"
-            variant="link"
-            onPress={() => navigation.navigate('CreateAccount')}
+            mt="3"
+            isLoading={isLoading}
+            onPress={() => login(email, password)}
           >
-            Create account
+            Login
           </Button>
-        </Box>
-      </VStack>
+          <VStack mt="10" justifyContent="center">
+            <Center>
+              <Text fontSize="sm">Don't have an account?</Text>
+            </Center>
+            <Center>
+              <Button
+                variant='link'
+                onPress={() => navigation.navigate('CreateAccount')}
+              >
+                Create account
+              </Button>
+            </Center>
+          </VStack>
+        </VStack>
+      </Box>
     </Center>
   );
-  // <Button size="lg" width="100%" variant="link" onPress={() => navigation.dispatch(StackActions.replace('Test'))}>Create account</Button>
 };
 
 export default LoginScreen;

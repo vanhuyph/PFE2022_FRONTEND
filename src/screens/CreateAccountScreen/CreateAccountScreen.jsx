@@ -54,77 +54,45 @@ const CreateAccountScreen = ({ navigation }) => {
   };
 
   return (
-    <Center
-      p={16}
-      height="100%"
-      _light={{ bg: 'primary.50' }}
-      _dark={{ bg: 'primary.1000' }}
-      safeArea
-    >
-      <VStack space={8} height="100%" width={315}>
-        <Box height="28%" pt={3}>
-          <Heading size="2xl">Create your account</Heading>
-        </Box>
-        <VStack space={10} height="40%">
-          <FormControl isRequired>
-            <FormControl.Label
-              _text={{
-                bold: true,
-              }}
-            >
-              Username
-            </FormControl.Label>
+    <Center safeArea h="100%" bg="primary.50">
+      <Box h="100%" p="2" w="90%" maxW="290" py="8">
+        <Heading size="2xl">Create your account</Heading>
+        <VStack space={7} mt="16">
+          <FormControl>
+            <FormControl.Label isRequired>Username</FormControl.Label>
             <Input
-              onChangeText={(value) =>
-                setData({ ...formData, username: value })
-              }
+              size="xl"
               variant="underlined"
+              onChangeText={(text) => setData({ ...formData, username: text })}
             />
           </FormControl>
-          <FormControl isRequired>
-            <FormControl.Label
-              _text={{
-                bold: true,
-              }}
-            >
-              Email
-            </FormControl.Label>
+          <FormControl>
+            <FormControl.Label isRequired>Email</FormControl.Label>
             <Input
-              onChangeText={(value) => setData({ ...formData, email: value })}
+              size="xl"
               variant="underlined"
+              onChangeText={(text) => setData({ ...formData, email: text })}
             />
           </FormControl>
-          <FormControl isRequired>
-            <FormControl.Label
-              _text={{
-                bold: true,
-              }}
-            >
-              Password
-            </FormControl.Label>
+          <FormControl>
+            <FormControl.Label isRequired>Password</FormControl.Label>
             <Input
+              size="xl"
               type="password"
-              onChangeText={(value) =>
-                setData({ ...formData, password: value })
-              }
               variant="underlined"
+              onChangeText={(text) => setData({ ...formData, password: text })}
             />
           </FormControl>
-        </VStack>
-        <Button size="lg" isLoading={isLoading} onPress={onSubmit}>
-          Create account
-        </Button>
-        <Box pt={8}>
-          <Button
-            size="lg"
-            width="100%"
-            variant="link"
-            onPress={() => navigation.navigate('Login')}
-          >
-            Back to login
+          <Button mt="6" isLoading={isLoading} onPress={onSubmit}>
+            Sign up
           </Button>
-        </Box>
-      </VStack>
+          <Center>
+            <Button variant="link" onPress={() => navigation.navigate('Login')}>
+              Back to login
+            </Button>
+          </Center>
+        </VStack>
+      </Box>
     </Center>
   );
 };
