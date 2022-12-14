@@ -33,11 +33,11 @@ const CreateAccountScreen = ({ navigation }) => {
 
   const onSubmit = () => {
     if (validate()) {
-      let dataToSend = JSON.stringify({
+      let dataToSend = {
         username: formData.username,
         email: formData.email,
         password: formData.password,
-      });
+      };
       console.log('data to send : ' + dataToSend);
 
       UserService.registerUser(dataToSend)
