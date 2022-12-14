@@ -34,7 +34,7 @@ const PostScreen = ({ navigation, route }) => {
       <Heading py={7} px={2}>
         Comments
       </Heading>
-      <ScrollView height="100%">
+      <ScrollView height="63%">
         {commentsList.map((comment) => (
           <PostComponent
             key={comment.id}
