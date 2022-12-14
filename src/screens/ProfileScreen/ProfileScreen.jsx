@@ -130,7 +130,7 @@ export default function ProfileTabView({ navigation, route }) {
   return (
     <>
       <NavBar navigation={navigation} title="Profile" user={userID} />
-      {user ? <ProfileCard user={user.username} /> : <ActivityIndicator size="large" />}
+      {user ? <ProfileCard user={user} /> : <ActivityIndicator size="large" />}
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
