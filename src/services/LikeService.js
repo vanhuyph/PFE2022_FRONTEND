@@ -23,7 +23,7 @@ const addLike = (userToken, newObject) => {
 };
 
 const deleteLike = (userToken, newObject) => {
-    const request = axios.delete(baseUrl, newObject, {
+    const request = axios.post(baseUrl, newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
