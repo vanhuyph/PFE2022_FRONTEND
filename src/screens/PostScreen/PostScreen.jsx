@@ -25,7 +25,7 @@ const PostScreen = ({ navigation, route }) => {
         setCommentsList(response);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [post.id]);
 
   return (
     <Box bg={bg}>

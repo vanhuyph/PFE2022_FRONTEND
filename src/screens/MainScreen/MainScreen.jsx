@@ -32,7 +32,7 @@ const MainScreen = ({ navigation }) => {
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     console.log('refresh');
-    wait(5000).then(() => setRefreshing(false));
+    wait(3000).then(() => setRefreshing(false));
   }, []);
 
   return (

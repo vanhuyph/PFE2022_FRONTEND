@@ -9,6 +9,7 @@ import ProfileTabView from '../../screens/ProfileScreen/ProfileScreen';
 import SideBar from '../../screens/SideBar/SideBar';
 import SearchScreen from '../../screens/SearchScreen/SearchScreen'
 import PostScreen from '../../screens/PostScreen/PostScreen';
+import PostComponent from '../../screens/PostComponent/PostComponent';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -30,6 +31,7 @@ const AppNav = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
        <Stack.Screen name="Home" component={MainScreen} />
        <Stack.Screen name="Post" component={PostScreen} /> 
+       <Stack.Screen name="PostComponent" component={PostComponent} /> 
       </Stack.Navigator>
     )
   }

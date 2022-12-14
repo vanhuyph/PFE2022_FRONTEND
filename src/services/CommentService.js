@@ -2,8 +2,8 @@ import axios from "axios";
 import { BASE_URL } from '@env'
 const baseUrl = `${BASE_URL}/posts/`;
 
-const addComment = (userToken, newObject) => {
-    const request = axios.post(baseUrl + 'create/', newObject, {
+const addComment = (userToken, newObject, postID) => {
+    const request = axios.post(baseUrl + `comments/${postID}`, newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
