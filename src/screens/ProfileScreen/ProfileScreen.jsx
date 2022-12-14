@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState, useCallback } from 'react';
 import {
   useWindowDimensions,
-  StatusBar,
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
@@ -54,7 +53,7 @@ export default function ProfileTabView({ navigation, route }) {
       .catch((error) => console.log(error));
 
     RetweetService.getAllRetweet(userID, userToken)
-      .then((response) => {setRetweetsList(response); console.log(response[0])})
+      .then((response) => setRetweetsList(response))
       .catch((error) => console.log(error));
   }, [refresh]);
 
@@ -151,7 +150,7 @@ export default function ProfileTabView({ navigation, route }) {
             ))}
           </ScrollView>
         ) : (
-          <Center p={7}>You didn't retweet a post yet...</Center>
+          <Center p={7}>You didn't repost yet...</Center>
         )}
       </>
     );
