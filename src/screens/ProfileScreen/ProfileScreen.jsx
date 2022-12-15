@@ -25,9 +25,11 @@ export default function ProfileTabView({ navigation, route }) {
   const bg = useColorModeValue('white', '#242526');
   const textColor = useColorModeValue('black', 'white');
   const { userToken, userInfo } = useContext(AuthContext);
+  let followed = false
   let userID;
-  if (route.params) {
-    userID = route.params.userID;
+  if (route.params !== undefined) {
+    userID = route.params.user.user.id;
+    followed = route.params.user.followed
   } else {
     userID = userInfo.id;
   }
@@ -41,20 +43,30 @@ export default function ProfileTabView({ navigation, route }) {
 
   useEffect(() => {
     UserService.getUserBydID(userID, userToken)
-      .then((response) => setUser(response))
+      .then((response) => {
+        setUser(response)
+      })
       .catch((error) => console.log(error));
 
     PostService.getPostByUserID(userID, userToken)
-      .then((response) => setPosts(response))
+      .then((response) => {
+        setPosts(response)
+      })
       .catch((error) => console.log(error));
 
     LikeService.getLikedListByUserID(userID, userToken)
-      .then((response) => setLikedPostsList(response))
+      .then((response) => {
+        setLikedPostsList(response)
+      })
       .catch((error) => console.log(error));
 
     RetweetService.getAllRetweet(userID, userToken)
-      .then((response) => setRetweetsList(response))
+      .then((response) => {
+        setRetweetsList(response)
+      })
       .catch((error) => console.log(error));
+
+
   }, [refresh]);
 
   const onRefresh = useCallback(() => {
@@ -81,7 +93,7 @@ export default function ProfileTabView({ navigation, route }) {
 
           posts.map((post) => (
             <PostComponent
-              key={post.id}
+              key={post.post.id}
               post={post}
               navigation={navigation}
             ></PostComponent>
@@ -110,11 +122,10 @@ export default function ProfileTabView({ navigation, route }) {
       >
         {likedPostsList.length > 0 ? (
 
-
           likedPostsList.map((likedPost) => (
             <PostComponent
-              key={likedPost.id}
-              post={likedPost.post}
+              key={likedPost.post.id}
+              post={likedPost}
               navigation={navigation}
             ></PostComponent>
           ))
@@ -145,8 +156,8 @@ export default function ProfileTabView({ navigation, route }) {
 
           retweetsList.map((rt) => (
             <PostComponent
-              key={rt.id}
-              post={rt.post}
+              key={rt.post.id}
+              post={rt}
               navigation={navigation}
             ></PostComponent>
           )
@@ -174,7 +185,7 @@ export default function ProfileTabView({ navigation, route }) {
   return (
     <>
       <NavBar navigation={navigation} title="Profile" user={userID} />
-      {user ? <ProfileCard user={user} /> : <ActivityIndicator size="large" />}
+      {user ? <ProfileCard user={user} followed={followed} /> : <ActivityIndicator size="large" />}
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}

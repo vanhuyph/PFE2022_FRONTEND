@@ -22,8 +22,8 @@ const deleteComment = (userToken, newObject) => {
     return request.then((response) => response.data);
 };
 
-const getAllCommentsFromPostID = (userToken, postID) => {
-    const request = axios.get(baseUrl + `comments/${postID}`, {
+const getAllCommentsFromPostID = (userToken, userID, postID) => {
+    const request = axios.get(baseUrl + `comments?user=${userID}&post=${postID}`, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',

@@ -15,33 +15,35 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 const PostScreen = ({ navigation, route }) => {
   const { post } = route.params;
-  const { userToken } = useContext(AuthContext);
+  let thePost = post.post
+  const { userInfo, userToken } = useContext(AuthContext);
   const [commentsList, setCommentsList] = useState([]);
   const bg = useColorModeValue('primary.50', 'primary.1000');
 
   useEffect(() => {
-    CommentService.getAllCommentsFromPostID(userToken, post.id)
+    CommentService.getAllCommentsFromPostID(userToken, userInfo.id, thePost.id)
       .then((response) => {
         setCommentsList(response);
+
       })
       .catch((error) => console.log(error));
-  }, [post.id]);
+  }, [post.post.id]);
 
   return (
     <Box bg={bg}>
       <NavBar navigation={navigation} title="Post" />
-      <PostComponent post={post} />
+      <PostComponent navigation={navigation} post={post} />
       <Heading py={7} px={2}>
         Comments
       </Heading>
       <ScrollView height="63%">
-        {commentsList.map((comment) => (
+        {commentsList.length > 0 ? commentsList.map((comment) => (
           <PostComponent
-            key={comment.id}
+            key={comment.post.id}
             navigation={navigation}
             post={comment}
           />
-        ))}
+        )) : <Box></Box>}
       </ScrollView>
     </Box>
   );
