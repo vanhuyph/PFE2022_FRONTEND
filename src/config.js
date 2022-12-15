@@ -1,0 +1,1 @@
+export const BASE_URL = "https://pfe-2022-prod.azurewebsites.net"
