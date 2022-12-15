@@ -27,8 +27,8 @@ const loginUser = (newObject) => {
     return request.then((response) => response.data);
 }
 
-const searchUser = (username, userToken) => {
-    const request = axios.get(baseUrl + 'search/' + username, {
+const searchUser = (id, username, userToken) => {
+    const request = axios.get(baseUrl + 'search?user=' + id + '&search=' + username, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',

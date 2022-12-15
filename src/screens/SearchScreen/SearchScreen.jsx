@@ -15,11 +15,12 @@ import { AuthContext } from '../../contexts/AuthContext';
 const SearchScreen = ({ navigation }) => {
   const [searchInput, setSearchInput] = useState();
   const [users, setUsersList] = useState([]);
-  const { userToken } = useContext(AuthContext);
+  const { userToken, userInfo } = useContext(AuthContext);
 
   useEffect(() => {
-    UserService.searchUser(searchInput, userToken)
+    UserService.searchUser(userInfo.id,searchInput, userToken)
       .then((response) => {
+        console.log(response);
         setUsersList(response);
       })
       .catch((error) => {
@@ -52,7 +53,7 @@ const SearchScreen = ({ navigation }) => {
       </Center>
       <ScrollView height="100%">
         {users.map((user) => (
-          <UserComponent key={user.id} user={user} navigation={navigation}/>
+          <UserComponent key={user.user.id} user={user} navigation={navigation}/>
         ))}
       </ScrollView>
     </Box>

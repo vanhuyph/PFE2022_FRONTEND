@@ -50,8 +50,9 @@ const MainScreen = ({ navigation }) => {
         }
       >
         {posts.length > 0 ? posts.map((post) => (
-          <PostComponent key={post.id} post={post} navigation={navigation} />
-        )) : <Center p={4}>Start following someone to fill your feed</Center>}
+          //<Center key={post.id} p={4}>Test</Center>
+          <PostComponent key={post.post.id} post={post} navigation={navigation} />
+      )) : <Center p={4}>Start following someone to fill your feed</Center>}
       </ScrollView>
     </>
   );

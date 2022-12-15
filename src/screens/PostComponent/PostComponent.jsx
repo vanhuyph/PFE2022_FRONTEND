@@ -20,37 +20,32 @@ import CommentService from '../../services/CommentService';
 const color = '#812bd6';
 
 const PostComponent = ({ navigation, post }) => {
+    let thePost = post.post
+
     const [content, setContent] = useState();
-    const [liked, setLiked] = useState(false);
-    const [rePosted, setRePosted] = useState(false);
+    const [liked, setLiked] = useState(post.liked);
+    const [rePosted, setRePosted] = useState(post.retweeted);
     const [reply, setReply] = useState(false);
-    const [commentNb, setCommentNb] = useState(post.comment_count);
-    const [likeNb, setLikeNb] = useState(post.like_count);
-    const [retweetNb, setRetweetNb] = useState(post.retweet_count);
+    const [commentNb, setCommentNb] = useState(thePost.comment_count);
+    const [likeNb, setLikeNb] = useState(thePost.like_count);
+    const [retweetNb, setRetweetNb] = useState(thePost.retweet_count);
     const { userInfo } = useContext(AuthContext);
     const bg = useColorModeValue('black', '#838383');
     const colorText = useColorModeValue('black', 'white');
-    console.log(post);
+
 
     let dataToSendLike = {
         user: userInfo.id,
-        post: post.id,
+        post: post.post.id,
     };
     let dataToSendRt = {
         user: userInfo.id,
-        post: post.id,
+        post: post.post.id,
     };
     let commentToSend = {
         user: userInfo.id,
         content: content,
     };
-
-    /*useEffect(() => {
-        RetweetService.existRetweet(dataToSendRt,userInfo.tokens)
-            .then((response) => setRePosted(response))
-            .catch((error) => console.log(error));
-    }, [])*/
-
 
     const onPressLike = () => {
         if (!liked) {
@@ -105,7 +100,7 @@ const PostComponent = ({ navigation, post }) => {
     };
 
     const onSendComment = () => {
-        CommentService.addComment(userInfo.tokens, commentToSend, post.id)
+        CommentService.addComment(userInfo.tokens, commentToSend, post.post.id)
             .then((response) => {
                 console.log(response);
                 return response;
@@ -122,7 +117,7 @@ const PostComponent = ({ navigation, post }) => {
     };
 
     const onPressUser = useCallback(() => {
-        navigation.navigate('Profil', { userID: post.user })
+        navigation.navigate('Profil', { userID: post.post.user })
     }, [navigation])
 
     return (
@@ -135,10 +130,10 @@ const PostComponent = ({ navigation, post }) => {
         >
             <VStack space={5}>
                 <TouchableOpacity onPress={onPressUser}>
-                    <Heading size="sm">{post.author_pseudo}</Heading>
+                    <Heading size="sm">{post.post.author_pseudo}</Heading>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={onPressPost}>
-                    <Text>{post.content}</Text>
+                    <Text>{post.post.content}</Text>
                 </TouchableOpacity>
                 <HStack justifyContent="space-around">
                     <Box>

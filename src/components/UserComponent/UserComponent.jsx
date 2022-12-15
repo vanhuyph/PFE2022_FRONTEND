@@ -6,13 +6,14 @@ import SubscriptionService from '../../services/SubscriptionService';
 
 const UserComponent = ({ navigation, user }) => {
   const { userToken, userInfo } = useContext(AuthContext);
-  const [follow, setFollow] = useState(false)
+  const [follow, setFollow] = useState(user.followed)
   let button;
 
   let dataToSend = {
     user: userInfo.id,
     subscription: user.id,
   };
+
 
   const createSubscription = () => {
     SubscriptionService.createSubscription(dataToSend, userToken)
@@ -27,7 +28,7 @@ const UserComponent = ({ navigation, user }) => {
   };
 
   const onPressUser = useCallback(() => {
-    navigation.navigate('Profil', { userID: user.id });
+    navigation.navigate('Profil', { user: user });
   }, [navigation]);
 
   if (!follow) {
@@ -59,7 +60,7 @@ const UserComponent = ({ navigation, user }) => {
           <Box>
             <TouchableOpacity onPress={onPressUser}>
               <Box my="auto">
-                <Heading size="sm">{user.username}</Heading>
+                <Heading size="sm">{user.user.username}</Heading>
               </Box>
             </TouchableOpacity>
           </Box>

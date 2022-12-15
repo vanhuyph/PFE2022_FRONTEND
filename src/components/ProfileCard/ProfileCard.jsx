@@ -11,10 +11,10 @@ import {
 import { AuthContext } from '../../contexts/AuthContext';
 import SubscriptionService from '../../services/SubscriptionService';
 
-const ProfileCard = ({ user }) => {
+const ProfileCard = ({ user, followed }) => {
   const bg = useColorModeValue('primary.50', 'primary.1000');
   const { userInfo, userToken } = useContext(AuthContext);
-  const [followPressed, setFollowPressed] = useState(false);
+  const [followPressed, setFollowPressed] = useState(followed);
   let button;
 
   let dataToSend = {
@@ -31,8 +31,8 @@ const ProfileCard = ({ user }) => {
     } else {
       //l'utilisateur doit se unfollow
       SubscriptionService.deleteSubscription(dataToSend, userToken)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
     }
     setFollowPressed(!followPressed);
   };
