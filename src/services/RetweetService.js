@@ -1,10 +1,10 @@
 import axios from "axios";
 import { BASE_URL } from '@env'
-const baseUrl = `${BASE_URL}/retweets/`;
+const baseUrl = `${BASE_URL}/retweets`;
 console.log(baseUrl);
 
 const addRetweet = (userToken, newObject) => {
-    const request = axios.post(baseUrl + 'create/', newObject, {
+    const request = axios.post(baseUrl, newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
@@ -14,7 +14,7 @@ const addRetweet = (userToken, newObject) => {
 };
 
 const deleteRetweet = (userToken, newObject) => {
-    const request = axios.post(baseUrl + 'delete/', newObject, {
+    const request = axios.delete(baseUrl + '?user=' + newObject.user + '&post=' + newObject.post, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
@@ -24,7 +24,17 @@ const deleteRetweet = (userToken, newObject) => {
 };
 
 const getAllRetweet = (userID, userToken) => {
-    const request = axios.get(baseUrl + `all/${userID}`, {
+    const request = axios.get(baseUrl + `/all/${userID}`, {
+        headers: {
+            'Authorization': 'Token ' + userToken,
+            'Content-Type': 'application/json',
+        }
+    });
+    return request.then((response) => response.data);
+};
+
+const existRetweet = (newObject, userToken) => {
+    const request = axios.get(baseUrl + '/exist?user=' + newObject.user + '&post=' + newObject.post, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
@@ -36,5 +46,6 @@ const getAllRetweet = (userID, userToken) => {
 export default {
     addRetweet,
     deleteRetweet,
-    getAllRetweet
+    getAllRetweet,
+    existRetweet
 };

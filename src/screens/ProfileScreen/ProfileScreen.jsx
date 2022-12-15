@@ -65,94 +65,96 @@ export default function ProfileTabView({ navigation, route }) {
 
   const FirstRoute = () => {
     return (
-      <>
+      <ScrollView
+        bg={bg}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={onRefresh}
+            progressBackgroundColor={useColorModeValue('white', '#242526')}
+            colors={[colorRefresh]}
+            tintColor={colorRefresh}
+          ></RefreshControl>
+        }
+      >
         {posts.length > 0 ? (
-          <ScrollView
-            bg={bg}
-            refreshControl={
-              <RefreshControl
-                refreshing={refresh}
-                onRefresh={onRefresh}
-                progressBackgroundColor={useColorModeValue('white', '#242526')}
-                colors={[colorRefresh]}
-                tintColor={colorRefresh}
-              ></RefreshControl>
-            }
-          >
-            {posts.map((post) => (
-              <PostComponent
-                key={post.id}
-                post={post}
-                navigation={navigation}
-              ></PostComponent>
-            ))}
-          </ScrollView>
+
+          posts.map((post) => (
+            <PostComponent
+              key={post.id}
+              post={post}
+              navigation={navigation}
+            ></PostComponent>
+          ))
+
         ) : (
           <Center p={7}>You didn't post yet...</Center>
         )}
-      </>
+      </ScrollView>
     );
   };
 
   const SecondRoute = () => {
     return (
-      <>
+      <ScrollView
+        bg={bg}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={onRefresh}
+            progressBackgroundColor={useColorModeValue('white', '#242526')}
+            colors={[colorRefresh]}
+            tintColor={colorRefresh}
+          ></RefreshControl>
+        }
+      >
         {likedPostsList.length > 0 ? (
-          <ScrollView
-            bg={bg}
-            refreshControl={
-              <RefreshControl
-                refreshing={refresh}
-                onRefresh={onRefresh}
-                progressBackgroundColor={useColorModeValue('white', '#242526')}
-                colors={[colorRefresh]}
-                tintColor={colorRefresh}
-              ></RefreshControl>
-            }
-          >
-            {likedPostsList.map((likedPost) => (
-              <PostComponent
-                key={likedPost.id}
-                post={likedPost.post}
-                navigation={navigation}
-              ></PostComponent>
-            ))}
-          </ScrollView>
+
+
+          likedPostsList.map((likedPost) => (
+            <PostComponent
+              key={likedPost.id}
+              post={likedPost.post}
+              navigation={navigation}
+            ></PostComponent>
+          ))
+
+
         ) : (
           <Center p={7}>You didn't like a post yet...</Center>
         )}
-      </>
+      </ScrollView>
     );
   };
 
   const ThirdRoute = () => {
     return (
-      <>
-        {retweetsList.length > 0 ? (
-          <ScrollView
-            bg={bg}
-            refreshControl={
-              <RefreshControl
-                refreshing={refresh}
-                onRefresh={onRefresh}
-                progressBackgroundColor={useColorModeValue('white', '#242526')}
-                colors={[colorRefresh]}
-                tintColor={colorRefresh}
-              ></RefreshControl>
-            }
-          >
-            {retweetsList.map((rt) => (
-              <PostComponent
-                key={rt.id}
-                post={rt.post}
-                navigation={navigation}
-              ></PostComponent>
-            ))}
-          </ScrollView>
-        ) : (
-          <Center p={7}>You didn't repost yet...</Center>
-        )}
-      </>
+      <ScrollView
+        bg={bg}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={onRefresh}
+            progressBackgroundColor={useColorModeValue('white', '#242526')}
+            colors={[colorRefresh]}
+            tintColor={colorRefresh}
+          ></RefreshControl>
+        }
+      >
+        {retweetsList.length > 0 ?
+
+          retweetsList.map((rt) => (
+            <PostComponent
+              key={rt.id}
+              post={rt.post}
+              navigation={navigation}
+            ></PostComponent>
+          )
+
+          ) : (
+            <Center p={7}>You didn't repost yet...</Center>
+          )}
+      </ScrollView>
     );
   };
 
