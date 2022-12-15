@@ -44,8 +44,6 @@ const CreateAccountScreen = ({ navigation }) => {
       UserService.registerUser(dataToSend)
         .then((response) => {
           login(formData.email, formData.password);
-          console.log(response);
-          console.log('Registration success');
         })
         .catch((error) => console.log(error));
     } else {

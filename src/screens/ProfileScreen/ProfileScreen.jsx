@@ -71,7 +71,6 @@ export default function ProfileTabView({ navigation, route }) {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    console.log('refresh');
     wait(3000).then(() => setRefreshing(false));
   }, []);
 

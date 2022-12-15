@@ -20,7 +20,6 @@ const MainScreen = ({ navigation }) => {
   useEffect(() => {
     PostService.getAllFollowingPost(userInfo.id, userToken)
       .then((response) => {
-        // console.log(response);
         return response;
       })
       .then((data) => {
@@ -31,7 +30,6 @@ const MainScreen = ({ navigation }) => {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    console.log('refresh');
     wait(3000).then(() => setRefreshing(false));
   }, []);
 

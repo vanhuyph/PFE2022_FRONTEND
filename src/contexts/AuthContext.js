@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const login = (email, password) => {
         setIsLoading(true);
         let dataToSend = { email, password }
-        console.log(dataToSend);
+
         UserService.loginUser(dataToSend).then((response) => {
             if (response.message.startsWith("Invalid")) {
                 throw new Error('Invalid credentials')
@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
             let userInfo = response;
             setUserInfo(userInfo);
             setUserToken(userInfo.tokens);
-            console.log('User token: ' + userInfo.tokens);
             AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
             AsyncStorage.setItem('userToken', userInfo.tokens);
         }).catch((error) => {
@@ -42,10 +41,8 @@ export const AuthProvider = ({ children }) => {
             setIsLoading(true);
             let userInfo = await AsyncStorage.getItem('userInfo');
             let userToken = await AsyncStorage.getItem('userToken');
-            console.log("Token LoggedIn " +userToken);
             userInfo = JSON.parse(userInfo);
             if (userInfo) {
-                console.log(userInfo);
                 setUserToken(userToken);
                 setUserInfo(userInfo);
             }

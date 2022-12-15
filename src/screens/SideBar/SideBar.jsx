@@ -15,11 +15,7 @@ const SideBar = (props) => {
   }, [navigation]);
 
   const handlePressProfil = useCallback(() => {
-
-    console.log(userInfo);
-
     navigation.navigate('StackProfil', { "user": { "user": {id:userInfo.id}}});
-
   }, [navigation]);
 
   const handlePressSearch = useCallback(() => {

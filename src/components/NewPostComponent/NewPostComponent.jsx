@@ -18,7 +18,6 @@ const NewPostComponent = ({ onClose }) => {
     setText()
     PostService.addPost(userToken, dataToSend)
       .then((response) => {
-        console.log(response);
         onClose()
         return response;
       })

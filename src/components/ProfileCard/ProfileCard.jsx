@@ -24,12 +24,10 @@ const ProfileCard = ({ user, followed }) => {
 
   const onPressFollow = () => {
     if (!followPressed) {
-      //l'utilisateur doit se follow
       SubscriptionService.createSubscription(dataToSend, userToken)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
     } else {
-      //l'utilisateur doit se unfollow
       SubscriptionService.deleteSubscription(dataToSend, userToken)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));

@@ -7,7 +7,6 @@ import {
     HStack,
     useColorModeValue,
     Text,
-    Input,
     Button,
     TextArea,
 } from 'native-base';
@@ -53,7 +52,6 @@ const PostComponent = ({ navigation, post }) => {
             setLikeNb(likeNb + 1);
             LikeService.addLike(userInfo.tokens, dataToSendLike)
                 .then((response) => {
-                    console.log(response);
                     return response;
                 })
                 .catch((error) => console.log(error));
@@ -62,7 +60,6 @@ const PostComponent = ({ navigation, post }) => {
             setLikeNb(likeNb - 1);
             LikeService.deleteLike(userInfo.tokens, dataToSendLike)
                 .then((response) => {
-                    console.log(response);
                     return response;
                 })
                 .catch((error) => console.log(error));
@@ -75,7 +72,6 @@ const PostComponent = ({ navigation, post }) => {
             setRetweetNb(retweetNb + 1);
             RetweetService.addRetweet(userInfo.tokens, dataToSendRt)
                 .then((response) => {
-                    console.log(response);
                     return response;
                 })
                 .catch((error) => console.log(error));
@@ -84,7 +80,6 @@ const PostComponent = ({ navigation, post }) => {
             setRetweetNb(retweetNb - 1);
             RetweetService.deleteRetweet(userInfo.tokens, dataToSendRt)
                 .then((response) => {
-                    console.log(response);
                     return response;
                 })
                 .catch((error) => console.log(error));
@@ -102,7 +97,6 @@ const PostComponent = ({ navigation, post }) => {
     const onSendComment = () => {
         CommentService.addComment(userInfo.tokens, commentToSend, post.post.id)
             .then((response) => {
-                console.log(response);
                 return response;
             })
             .catch((error) => console.log(error));
