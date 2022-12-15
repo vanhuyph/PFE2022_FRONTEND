@@ -1,9 +1,9 @@
 import axios from "axios";
 import { BASE_URL } from '@env'
-const baseUrl = `${BASE_URL}/subscriptions/`;
+const baseUrl = `${BASE_URL}/subscriptions`;
 
 const createSubscription = (newObject, userToken) => {
-    const request = axios.post(baseUrl + 'create/', newObject, {
+    const request = axios.post(baseUrl, newObject, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ const createSubscription = (newObject, userToken) => {
 };
 
 const deleteSubscription = (newObject, userToken) => {
-    const request = axios.post(baseUrl + 'delete/', newObject, {
+    const request = axios.delete(baseUrl + '?user=' + newObject.user + '&subscription=' + newObject.subscription, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',

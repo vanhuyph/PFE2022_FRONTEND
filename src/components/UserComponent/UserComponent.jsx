@@ -55,12 +55,18 @@ const UserComponent = ({ navigation, user }) => {
       _light={{ bg: 'primary.50' }}
     >
       <HStack space={5} justifyContent="space-around">
-        <TouchableOpacity onPress={onPressUser}>
-          <Box my="auto">
-            <Heading size="sm">{user.username}</Heading>
+        <Box justifyContent='center' width={150}>
+          <Box>
+            <TouchableOpacity onPress={onPressUser}>
+              <Box my="auto">
+                <Heading size="sm">{user.username}</Heading>
+              </Box>
+            </TouchableOpacity>
           </Box>
-        </TouchableOpacity>
-        {button}
+        </Box>
+        <Box>
+          {button}
+        </Box>
       </HStack>
     </Box>
   );
