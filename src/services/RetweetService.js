@@ -34,7 +34,7 @@ const getAllRetweet = (userID, userToken) => {
 };
 
 const existRetweet = (newObject, userToken) => {
-    const request = axios.get(baseUrl + 'exist/' + newObject.user + "/" + newObject.post, {
+    const request = axios.get(baseUrl + '/exist?user=' + newObject.user + '&post=' + newObject.post, {
         headers: {
             'Authorization': 'Token ' + userToken,
             'Content-Type': 'application/json',

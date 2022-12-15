@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback } from 'react';
+import React, { useState, useContext, useCallback, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import {
     Heading,
@@ -44,6 +44,13 @@ const PostComponent = ({ navigation, post }) => {
         user: userInfo.id,
         content: content,
     };
+
+    /*useEffect(() => {
+        RetweetService.existRetweet(dataToSendRt,userInfo.tokens)
+            .then((response) => setRePosted(response))
+            .catch((error) => console.log(error));
+    }, [])*/
+
 
     const onPressLike = () => {
         if (!liked) {
