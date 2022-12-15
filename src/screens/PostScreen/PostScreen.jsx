@@ -39,7 +39,7 @@ const PostScreen = ({ navigation, route }) => {
       <ScrollView height="63%">
         {commentsList.length > 0 ? commentsList.map((comment) => (
           <PostComponent
-            key={comment.id}
+            key={comment.post.id}
             navigation={navigation}
             post={comment}
           />

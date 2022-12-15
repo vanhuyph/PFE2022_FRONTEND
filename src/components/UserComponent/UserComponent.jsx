@@ -45,8 +45,6 @@ const UserComponent = ({ navigation, user }) => {
     </Button>
   }
 
-  console.log(user);
-
   return (
     <Box
       p={6}

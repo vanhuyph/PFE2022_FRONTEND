@@ -20,7 +20,6 @@ const SearchScreen = ({ navigation }) => {
   useEffect(() => {
     UserService.searchUser(userInfo.id,searchInput, userToken)
       .then((response) => {
-        console.log(response);
         setUsersList(response);
       })
       .catch((error) => {

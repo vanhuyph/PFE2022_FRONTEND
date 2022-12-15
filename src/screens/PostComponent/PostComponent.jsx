@@ -112,6 +112,7 @@ const PostComponent = ({ navigation, post }) => {
 
     const onPressPost = () => {
         if (navigation) {
+            //onPress={onPressUser}
             navigation.navigate('Post', { post: post });
         }
     };
@@ -129,7 +130,7 @@ const PostComponent = ({ navigation, post }) => {
             _light={{ bg: 'primary.50' }}
         >
             <VStack space={5}>
-                <TouchableOpacity onPress={onPressUser}>
+                <TouchableOpacity >
                     <Heading size="sm">{post.post.author_pseudo}</Heading>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={onPressPost}>
